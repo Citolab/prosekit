@@ -1,0 +1,16 @@
+.ProseMirror .prosekit-column-block {
+  width: 100%;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 1rem;
+  padding: 0.5rem 0;
+}
+
+.ProseMirror .prosekit-column {
+  overflow: auto;
+  min-width: 0;
+  border: 1px dashed color-mix(in srgb, currentColor 35%, transparent);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}

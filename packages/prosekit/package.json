@@ -39,6 +39,8 @@
     "./extensions/bold": "./src/extensions/bold.gen.ts",
     "./extensions/code": "./src/extensions/code.gen.ts",
     "./extensions/code-block": "./src/extensions/code-block.gen.ts",
+    "./extensions/column-layout": "./src/extensions/column-layout.gen.ts",
+    "./extensions/column-layout/style.css": "./src/extensions/column-layout/style.css",
     "./extensions/commit": "./src/extensions/commit.gen.ts",
     "./extensions/commit/style.css": "./src/extensions/commit/style.css",
     "./extensions/doc": "./src/extensions/doc.gen.ts",

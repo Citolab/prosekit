@@ -145,3 +145,5 @@
 - name: yjs
   frameworks: [react, preact, vue, svelte, solid]
   description: Real-time collaboration using Yjs CRDT library.
+- name: column-layout
+  frameworks: [lit]

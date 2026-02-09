@@ -11669,6 +11669,46 @@
       }
     },
     {
+      "name": "lit-example-column-layout",
+      "title": "lit-example-column-layout",
+      "type": "registry:block",
+      "description": "",
+      "registryDependencies": [],
+      "dependencies": [
+        "lit",
+        "prosekit"
+      ],
+      "files": [
+        {
+          "path": "registry/src/lit/examples/column-layout/editor.ts",
+          "type": "registry:component",
+          "target": "components/editor/examples/column-layout/editor.ts"
+        },
+        {
+          "path": "registry/src/lit/examples/column-layout/extension.ts",
+          "type": "registry:component",
+          "target": "components/editor/examples/column-layout/extension.ts"
+        },
+        {
+          "path": "registry/src/lit/examples/column-layout/index.ts",
+          "type": "registry:component",
+          "target": "components/editor/examples/column-layout/index.ts"
+        }
+      ],
+      "meta": {
+        "hasIcons": false,
+        "hidden": false,
+        "story": "column-layout",
+        "framework": "lit",
+        "accumulatedFiles": [
+          "registry/src/lit/examples/column-layout/editor.ts",
+          "registry/src/lit/examples/column-layout/extension.ts",
+          "registry/src/lit/examples/column-layout/index.ts"
+        ],
+        "internalDependencies": []
+      }
+    },
+    {
       "name": "lit-example-minimal",
       "title": "lit-example-minimal",
       "type": "registry:block",
