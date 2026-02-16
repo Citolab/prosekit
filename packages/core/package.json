@@ -1,7 +1,7 @@
 {
   "name": "@prosekit/core",
   "type": "module",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "private": false,
   "description": "Core features for ProseKit",
   "author": {
@@ -49,9 +49,9 @@
     "@prosekit/config-tsdown": "workspace:*",
     "@prosekit/config-vitest": "workspace:*",
     "diffable-html-snapshot": "^0.2.0",
-    "tsdown": "^0.20.1",
-    "typescript": "~5.9.3",
-    "vitest": "^4.0.18",
+    "tsdown": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:",
     "vitest-browser-commands": "^0.2.0"
   },
   "publishConfig": {
