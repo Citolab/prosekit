@@ -1,20 +1,23 @@
 import 'prosekit/lit/block-handle'
 
-import {
-  html,
-  LitElement,
-  type PropertyDeclaration,
-} from 'lit'
-import type { Editor } from 'prosekit/core'
+import { ContextConsumer } from '@lit/context'
+import { html, LitElement } from 'lit'
 
+import { editorContext } from '../editor-context'
+
+/** @public */
 export class LitBlockHandle extends LitElement {
-  static override properties = {
-    editor: { attribute: false } satisfies PropertyDeclaration<Editor>,
-    dir: { type: String } satisfies PropertyDeclaration<'ltr' | 'rtl'>,
-  }
+  declare dir: 'ltr' | 'rtl' | 'auto'
 
-  editor?: Editor
-  dir?: 'ltr' | 'rtl'
+  private _editorConsumer = new ContextConsumer(this, {
+    context: editorContext,
+    subscribe: true,
+  })
+
+  override connectedCallback() {
+    super.connectedCallback()
+    this.classList.add('contents')
+  }
 
   override createRenderRoot() {
     return this
@@ -22,27 +25,20 @@ export class LitBlockHandle extends LitElement {
 
   override render() {
     const placement = this.dir === 'rtl' ? 'right' : 'left'
+    const editor = this._editorConsumer.value ?? null
 
-    const editor = this.editor ?? null
-
-    return html`<prosekit-block-handle-popover
-      .editor=${editor}
-      placement=${placement}
-      class="CSS_BLOCK_HANDLE_POPOVER"
-    >
-      <prosekit-block-handle-add
-        .editor=${editor}
-        class="CSS_BLOCK_HANDLE_ADD"
-      >
-        <div class="CSS_ICON_PLUS"></div>
-      </prosekit-block-handle-add>
-      <prosekit-block-handle-draggable
-        .editor=${editor}
-        class="CSS_BLOCK_HANDLE_DRAG"
-      >
-        <div class="CSS_ICON_DRAG_HANDLE"></div>
-      </prosekit-block-handle-draggable>
-    </prosekit-block-handle-popover>`
+    return html`<prosekit-block-handle-root .editor=${editor}>
+      <prosekit-block-handle-positioner .placement=${placement} class="CSS_BLOCK_HANDLE_POSITIONER">
+        <prosekit-block-handle-popup class="CSS_BLOCK_HANDLE_POPUP">
+          <prosekit-block-handle-add .editor=${editor} class="CSS_BLOCK_HANDLE_ADD">
+            <div class="CSS_ICON_PLUS"></div>
+          </prosekit-block-handle-add>
+          <prosekit-block-handle-draggable .editor=${editor} class="CSS_BLOCK_HANDLE_DRAG">
+            <div class="CSS_ICON_DRAG_HANDLE"></div>
+          </prosekit-block-handle-draggable>
+        </prosekit-block-handle-popup>
+      </prosekit-block-handle-positioner>
+    </prosekit-block-handle-root>`
   }
 }
 

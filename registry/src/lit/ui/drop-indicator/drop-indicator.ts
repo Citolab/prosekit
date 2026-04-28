@@ -1,18 +1,21 @@
 import 'prosekit/lit/drop-indicator'
 
-import {
-  html,
-  LitElement,
-  type PropertyDeclaration,
-} from 'lit'
-import type { Editor } from 'prosekit/core'
+import { ContextConsumer } from '@lit/context'
+import { html, LitElement } from 'lit'
 
+import { editorContext } from '../editor-context'
+
+/** @public */
 export class LitDropIndicator extends LitElement {
-  static override properties = {
-    editor: { attribute: false } satisfies PropertyDeclaration<Editor>,
-  }
+  private _editorConsumer = new ContextConsumer(this, {
+    context: editorContext,
+    subscribe: true,
+  })
 
-  editor?: Editor
+  override connectedCallback() {
+    super.connectedCallback()
+    this.classList.add('contents')
+  }
 
   override createRenderRoot() {
     return this
@@ -20,7 +23,7 @@ export class LitDropIndicator extends LitElement {
 
   override render() {
     return html`<prosekit-drop-indicator
-      .editor=${this.editor ?? null}
+      .editor=${this._editorConsumer.value ?? null}
       class="CSS_DROP_INDICATOR"
     ></prosekit-drop-indicator>`
   }
