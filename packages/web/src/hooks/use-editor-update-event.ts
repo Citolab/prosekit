@@ -1,16 +1,16 @@
-import type { ConnectableElement, ReadonlySignal } from '@aria-ui/core'
+import type { HostElement } from '@aria-ui/core'
 import { defineUpdateHandler, type Editor, type UpdateHandler } from '@prosekit/core'
 
-import { useEditorExtension } from './use-editor-extension'
+import { useEditorExtension } from './use-editor-extension.ts'
 
 /**
  * @internal
  */
 export function useEditorUpdateEvent(
-  host: ConnectableElement,
-  editor: ReadonlySignal<Editor | null>,
+  host: HostElement,
+  getEditor: () => Editor | null,
   handler: UpdateHandler,
 ): void {
   const extension = defineUpdateHandler(handler)
-  useEditorExtension(host, editor, extension)
+  useEditorExtension(host, getEditor, extension)
 }

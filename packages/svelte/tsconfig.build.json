@@ -1,11 +1,7 @@
 {
-  "extends": "@ocavue/tsconfig/dom/build-tsc.json",
+  "extends": "@prosekit/config-ts/build.json",
   "compilerOptions": {
-    "outDir": "./.temp/tsconfig.build.out/",
-    "tsBuildInfoFile": "./.temp/tsconfig.build.tsbuildinfo",
-    "isolatedDeclarations": false,
-    "allowJs": false,
-    "rewriteRelativeImportExtensions": true
+    "isolatedDeclarations": false
   },
   "references": [
     { "path": "../web/tsconfig.json" }

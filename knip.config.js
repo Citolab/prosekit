@@ -16,11 +16,18 @@ function css(text) {
  */
 const config = {
   exclude: ['optionalPeerDependencies', 'binaries'],
-  ignoreDependencies: ['wrangler'],
+  ignoreDependencies: ['wrangler', '@changesets/types'],
   workspaces: {
     './packages/prosekit': {
+      project: ['src/**'],
       entry: [
         'src/**/*-css.ts',
+      ],
+    },
+    './packages/basic': {
+      project: ['src/**'],
+      entry: [
+        'src/**/*.scss',
       ],
     },
     './registry': {
@@ -31,6 +38,7 @@ const config = {
       ],
     },
     './website': {
+      project: ['src/**'],
       entry: [
         'src/stories/*.stories.ts',
         'src/styles/*.css',
@@ -38,10 +46,8 @@ const config = {
       ignoreDependencies: [
         /@iconify-json\/.*/,
         'babel-plugin-react-compiler',
-        'sharp',
 
         // Required by code blocks in documentation
-        'prosemirror-highlight',
         'y-websocket',
       ],
     },

@@ -12,6 +12,7 @@ export default defineESLintConfig(
         '**/preact/**/*.tsx',
       ],
       version: '18.0',
+      reactCompiler: !!process.env.CI,
     },
     vue: true,
     markdown: true,
@@ -22,5 +23,12 @@ export default defineESLintConfig(
       'no-console': ['warn', { allow: ['warn', 'error', 'assert'] }],
     },
     ignores: ['**/*.md', '**/*.md/**/*'],
+  },
+  {
+    rules: {
+      // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/consistent-function-scoping.md
+      'unicorn/consistent-function-scoping': 'error',
+    },
+    ignores: ['**/*.test.*', '**/*.spec.*'],
   },
 )

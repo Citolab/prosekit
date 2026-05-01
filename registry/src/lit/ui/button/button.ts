@@ -1,6 +1,10 @@
-import 'prosekit/lit/tooltip'
-
 import { html, LitElement, nothing, type PropertyDeclaration } from 'lit'
+import {
+  registerTooltipPopupElement,
+  registerTooltipPositionerElement,
+  registerTooltipRootElement,
+  registerTooltipTriggerElement,
+} from 'prosekit/lit/tooltip'
 
 class LitButton extends LitElement {
   static override properties = {
@@ -45,21 +49,29 @@ class LitButton extends LitElement {
             ${tooltip ? html`<span class="sr-only">${tooltip}</span>` : nothing}
           </button>
         </prosekit-tooltip-trigger>
-        ${
-          tooltip
-            ? html`
-              <prosekit-tooltip-content class="CSS_TOOLTIP_CONTENT">
-                ${tooltip}
-              </prosekit-tooltip-content>
+        ${tooltip
+          ? html`
+              <prosekit-tooltip-positioner class="CSS_TOOLTIP_POSITIONER">
+                <prosekit-tooltip-popup class="CSS_TOOLTIP_POPUP">
+                  ${tooltip}
+                </prosekit-tooltip-popup>
+              </prosekit-tooltip-positioner>
             `
-            : nothing
-        }
+          : nothing}
       </prosekit-tooltip-root>
     `
   }
 }
 
-customElements.define('lit-editor-button', LitButton)
+export function registerLitEditorButton() {
+  registerTooltipPopupElement()
+  registerTooltipPositionerElement()
+  registerTooltipRootElement()
+  registerTooltipTriggerElement()
+
+  if (customElements.get('lit-editor-button')) return
+  customElements.define('lit-editor-button', LitButton)
+}
 
 declare global {
   interface HTMLElementTagNameMap {

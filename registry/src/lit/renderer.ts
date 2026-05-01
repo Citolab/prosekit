@@ -1,13 +1,19 @@
 import { LitElement } from 'lit'
 import { html, unsafeStatic } from 'lit/static-html.js'
+import type { NodeJSON } from 'prosekit/core'
 
 import { loaders } from './loaders.gen'
 import { suppressLitWarnings } from './suppress-lit-warnings'
 
 suppressLitWarnings()
 
+interface ExampleProps {
+  initialContent?: NodeJSON
+}
+
 export class LitRenderer extends LitElement {
   story: string
+  exampleProps?: ExampleProps
 
   override createRenderRoot() {
     return this
@@ -15,6 +21,7 @@ export class LitRenderer extends LitElement {
 
   static override properties = {
     story: { type: String },
+    exampleProps: { attribute: false },
   }
 
   constructor() {
@@ -26,9 +33,7 @@ export class LitRenderer extends LitElement {
     const story = this.story
 
     if (!story) {
-      return html`
-        <p data-testid="lit-renderer-fallback">Loading...</p>
-      `
+      return html`<p data-testid="lit-renderer-fallback">Loading...</p>`
     }
 
     const loader = loaders[story as keyof typeof loaders]
@@ -40,7 +45,7 @@ export class LitRenderer extends LitElement {
 
     void loader()
     const tag = unsafeStatic('lit-editor-example-' + story)
-    return html`<${tag} style="display: contents;"></${tag}>`
+    return html`<${tag} .initialContent=${this.exampleProps?.initialContent} style="display: contents;"></${tag}>`
   }
 }
 

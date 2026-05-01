@@ -11,21 +11,21 @@ testStory({ story: 'user-menu-dynamic' }, () => {
     const editor = await waitForEditor()
     await editor.click()
 
-    const menu = page.locate('prosekit-autocomplete-popover')
+    const menu = page.locate('prosekit-autocomplete-popup')
     const menuItems = page.locate('prosekit-autocomplete-item, prosekit-autocomplete-empty')
     const itemAlice = menuItems.getByText('Alice')
     const itemBob = menuItems.getByText('Bob')
     const itemLoading = menuItems.getByText('Loading...')
     const itemNoResults = menuItems.getByText('No results')
-    const itemFocused = menu.locate('[role="option"][data-focused="true"]')
+    const itemHighlighted = menu.locate('[role="option"][data-highlighted]')
 
     // Reset the mouse position
     await unhover()
 
     // Ensure that the menu is positioned correctly inside the editor
-    const checkMenuPosition = () => {
-      const editorBox = getBoundingBox(editor)
-      const menuBox = getBoundingBox(menu)
+    const checkMenuPosition = async () => {
+      const editorBox = await getBoundingBox(editor)
+      const menuBox = await getBoundingBox(menu)
 
       expect(editorBox.width).toBeGreaterThan(1)
       expect(editorBox.height).toBeGreaterThan(1)
@@ -46,12 +46,12 @@ testStory({ story: 'user-menu-dynamic' }, () => {
 
       await expectLocatorToBeHidden(itemAlice)
       await expectLocatorToBeHidden(itemBob)
-      await expectLocatorToBeHidden(itemFocused)
+      await expectLocatorToBeHidden(itemHighlighted)
       await expect.element(itemLoading).toBeVisible()
       await expectLocatorToBeHidden(itemNoResults)
 
       await expect.element(menu).toBeVisible()
-      checkMenuPosition()
+      await checkMenuPosition()
     }
 
     // Show all users
@@ -60,11 +60,11 @@ testStory({ story: 'user-menu-dynamic' }, () => {
 
       await expect.element(itemAlice, { timeout: 5000 }).toBeVisible()
       await expect.element(itemBob, { timeout: 5000 }).toBeVisible()
-      await expect.element(itemFocused, { timeout: 5000 }).toBeVisible()
-      await expect.element(itemFocused, { timeout: 5000 }).toHaveTextContent('A')
+      await expect.element(itemHighlighted, { timeout: 5000 }).toBeVisible()
+      await expect.element(itemHighlighted, { timeout: 5000 }).toHaveTextContent('A')
 
       await expect.element(menu).toBeVisible()
-      checkMenuPosition()
+      await checkMenuPosition()
     }
 
     // Search alice
@@ -73,27 +73,27 @@ testStory({ story: 'user-menu-dynamic' }, () => {
 
       await expect.element(itemAlice, { timeout: 5000 }).toBeVisible()
       await expectLocatorToBeHidden(itemBob)
-      await expect.element(itemFocused, { timeout: 5000 }).toBeVisible()
-      await expect.element(itemFocused, { timeout: 5000 }).toHaveTextContent('Alice')
+      await expect.element(itemHighlighted, { timeout: 5000 }).toBeVisible()
+      await expect.element(itemHighlighted, { timeout: 5000 }).toHaveTextContent('Alice')
 
       await expect.element(menu).toBeVisible()
-      checkMenuPosition()
+      await checkMenuPosition()
     }
 
     // Press Backspace and show all users again
     {
       await keyboard.press('Backspace')
-      await expect.element(itemFocused).toBeVisible()
+      await expect.element(itemHighlighted).toBeVisible()
       await keyboard.press('Backspace')
-      await expect.element(itemFocused).toBeVisible()
+      await expect.element(itemHighlighted).toBeVisible()
       await keyboard.press('Backspace')
-      await expect.element(itemFocused).toBeVisible()
+      await expect.element(itemHighlighted).toBeVisible()
 
       await expect.element(itemAlice).toBeVisible()
       await expect.element(itemBob).toBeVisible()
 
       await expect.element(menu).toBeVisible()
-      checkMenuPosition()
+      await checkMenuPosition()
     }
 
     // Search bob
@@ -113,7 +113,7 @@ testStory({ story: 'user-menu-dynamic' }, () => {
       await expect.element(itemNoResults).toBeVisible()
 
       await expect.element(menu).toBeVisible()
-      checkMenuPosition()
+      await checkMenuPosition()
     }
 
     // Press Escape to dismiss the menu
@@ -144,7 +144,7 @@ testStory({ story: 'user-menu-dynamic' }, () => {
       await expect.element(itemBob).toBeVisible()
       await expectLocatorToBeHidden(itemNoResults)
 
-      checkMenuPosition()
+      await checkMenuPosition()
     }
 
     // Press Enter and insert the user
@@ -156,9 +156,9 @@ testStory({ story: 'user-menu-dynamic' }, () => {
       await expectLocatorToBeHidden(itemBob)
       await expectLocatorToBeHidden(itemNoResults)
       await expectLocatorToBeHidden(itemLoading)
-      await expect.element(itemFocused).toHaveTextContent('Alice')
+      await expect.element(itemHighlighted).toHaveTextContent('Alice')
 
-      checkMenuPosition()
+      await checkMenuPosition()
 
       expect(editor.element().textContent).toEqual('@ali')
       expect(editor.element().innerHTML).not.toContain('data-mention')

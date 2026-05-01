@@ -1,3 +1,5 @@
+'use client'
+
 import { defineSearchQuery, type SearchCommandsExtension } from 'prosekit/extensions/search'
 import { useEditor, useExtension } from 'prosekit/react'
 import { useMemo, useState } from 'react'
@@ -21,28 +23,6 @@ export default function Search(props: { onClose?: VoidFunction }) {
   useExtension(extension)
 
   const editor = useEditor<SearchCommandsExtension>()
-
-  const isEnter = (event: React.KeyboardEvent) => {
-    return (
-      event.key === 'Enter'
-      && !event.shiftKey
-      && !event.metaKey
-      && !event.altKey
-      && !event.ctrlKey
-      && !event.nativeEvent.isComposing
-    )
-  }
-
-  const isShiftEnter = (event: React.KeyboardEvent) => {
-    return (
-      event.key === 'Enter'
-      && event.shiftKey
-      && !event.metaKey
-      && !event.altKey
-      && !event.ctrlKey
-      && !event.nativeEvent.isComposing
-    )
-  }
 
   const handleSearchKeyDown = (event: React.KeyboardEvent) => {
     if (isEnter(event)) {
@@ -121,5 +101,27 @@ export default function Search(props: { onClose?: VoidFunction }) {
         </div>
       )}
     </div>
+  )
+}
+
+function isEnter(event: React.KeyboardEvent) {
+  return (
+    event.key === 'Enter'
+    && !event.shiftKey
+    && !event.metaKey
+    && !event.altKey
+    && !event.ctrlKey
+    && !event.nativeEvent.isComposing
+  )
+}
+
+function isShiftEnter(event: React.KeyboardEvent) {
+  return (
+    event.key === 'Enter'
+    && event.shiftKey
+    && !event.metaKey
+    && !event.altKey
+    && !event.ctrlKey
+    && !event.nativeEvent.isComposing
   )
 }
