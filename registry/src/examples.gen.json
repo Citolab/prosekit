@@ -553,6 +553,13 @@
       ],
       "hidden": false,
       "description": "Math equation rendering using the KaTeX library."
+    },
+    "column-layout": {
+      "frameworks": [
+        "lit"
+      ],
+      "hidden": false,
+      "description": "Multi-column layout editor with customizable columns."
     }
   },
   "examples": {
@@ -2508,6 +2515,14 @@
         "registry/src/lit/ui/image-upload-popover/index.ts",
         "registry/src/lit/ui/toolbar/index.ts",
         "registry/src/lit/ui/toolbar/toolbar.ts"
+      ]
+    },
+    "lit-example-column-layout": {
+      "story": "column-layout",
+      "files": [
+        "registry/src/lit/examples/column-layout/editor.ts",
+        "registry/src/lit/examples/column-layout/extension.ts",
+        "registry/src/lit/examples/column-layout/index.ts"
       ]
     },
     "lit-example-minimal": {

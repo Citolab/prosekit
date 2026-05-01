@@ -194,20 +194,26 @@
   "peerDependencies": {
     "loro-crdt": ">= 1.10.0",
     "loro-prosemirror": ">= 0.4.1",
+    "y-prosemirror": ">= 1.2.9",
+    "yjs": ">= 13.6.18",
     "preact": ">= 10.11.0",
     "react": ">= 18.2.0",
     "react-dom": ">= 18.2.0",
     "solid-js": ">= 1.7.0",
     "svelte": ">= 5.0.0",
-    "vue": ">= 3.0.0",
-    "y-prosemirror": ">= 1.2.9",
-    "yjs": ">= 13.6.18"
+    "vue": ">= 3.0.0"
   },
   "peerDependenciesMeta": {
     "loro-crdt": {
       "optional": true
     },
     "loro-prosemirror": {
+      "optional": true
+    },
+    "y-prosemirror": {
+      "optional": true
+    },
+    "yjs": {
       "optional": true
     },
     "preact": {
@@ -226,12 +232,6 @@
       "optional": true
     },
     "vue": {
-      "optional": true
-    },
-    "y-prosemirror": {
-      "optional": true
-    },
-    "yjs": {
       "optional": true
     }
   },
@@ -310,6 +310,13 @@
       "./extensions/code-block": {
         "types": "./dist/extensions/code-block.d.ts",
         "default": "./dist/extensions/code-block.js"
+      },
+      "./extensions/column-layout": {
+        "types": "./dist/extensions/column-layout.d.ts",
+        "default": "./dist/extensions/column-layout.js"
+      },
+      "./extensions/column-layout/style.css": {
+        "default": "./dist/extensions/column-layout/style.css"
       },
       "./extensions/commit": {
         "types": "./dist/extensions/commit.d.ts",
@@ -834,6 +841,9 @@
         ],
         "extensions/code-block": [
           "./dist/extensions/code-block.d.ts"
+        ],
+        "extensions/column-layout": [
+          "./dist/extensions/column-layout.d.ts"
         ],
         "extensions/commit": [
           "./dist/extensions/commit.d.ts"

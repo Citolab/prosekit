@@ -179,6 +179,13 @@
         "types": "./dist/code-block.d.ts",
         "default": "./dist/code-block.js"
       },
+      "./column-layout": {
+        "types": "./dist/column-layout.d.ts",
+        "default": "./dist/column-layout.js"
+      },
+      "./column-layout/style.css": {
+        "default": "./dist/column-layout/style.css"
+      },
       "./commit": {
         "types": "./dist/commit.d.ts",
         "default": "./dist/commit.js"
@@ -371,6 +378,9 @@
         ],
         "code-block": [
           "./dist/code-block.d.ts"
+        ],
+        "column-layout": [
+          "./dist/column-layout.d.ts"
         ],
         "commit": [
           "./dist/commit.d.ts"
