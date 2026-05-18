@@ -30,6 +30,7 @@
   "module": "./src/index.ts",
   "exports": {
     ".": "./src/index.ts",
+    "./ai": "./src/ai.gen.ts",
     "./basic": "./src/basic.gen.ts",
     "./basic/style.css": "./src/basic/style.css",
     "./basic/typography.css": "./src/basic/typography.css",
@@ -180,6 +181,7 @@
     "build:typedoc": "typedoc"
   },
   "dependencies": {
+    "@prosekit/ai": "workspace:*",
     "@prosekit/basic": "workspace:*",
     "@prosekit/core": "workspace:*",
     "@prosekit/extensions": "workspace:*",
@@ -265,6 +267,10 @@
       ".": {
         "types": "./dist/index.d.ts",
         "default": "./dist/index.js"
+      },
+      "./ai": {
+        "types": "./dist/prosekit-ai.d.ts",
+        "default": "./dist/prosekit-ai.js"
       },
       "./basic": {
         "types": "./dist/basic.d.ts",
@@ -817,6 +823,9 @@
       "*": {
         ".": [
           "./dist/index.d.ts"
+        ],
+        "ai": [
+          "./dist/prosekit-ai.d.ts"
         ],
         "basic": [
           "./dist/basic.d.ts"

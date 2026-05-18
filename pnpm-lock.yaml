@@ -96,6 +96,31 @@ importers:
         specifier: ^4.90.1
         version: 4.90.1
 
+  packages/ai:
+    dependencies:
+      '@prosekit/core':
+        specifier: workspace:^
+        version: link:../core
+      '@prosekit/pm':
+        specifier: workspace:^
+        version: link:../pm
+    devDependencies:
+      '@prosekit/config-tsdown':
+        specifier: workspace:*
+        version: link:../config-tsdown
+      '@prosekit/config-vitest':
+        specifier: workspace:*
+        version: link:../config-vitest
+      tsdown:
+        specifier: 'catalog:'
+        version: 0.22.0(@tsdown/css@0.22.0)(oxc-resolver@11.19.1(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0))(tsx@4.22.1)(typescript@6.0.3)(vue-tsc@3.2.9(typescript@6.0.3))
+      typescript:
+        specifier: 'catalog:'
+        version: 6.0.3
+      vitest:
+        specifier: 'catalog:'
+        version: 4.1.6(@types/node@24.12.2)(@vitest/browser-playwright@4.1.6)(@vitest/coverage-v8@4.1.6)(@vitest/ui@4.1.6)(happy-dom@20.9.0)(jsdom@29.1.1)(vite@8.0.13(@types/node@24.12.2)(esbuild@0.28.0)(jiti@2.7.0)(sass@1.99.0)(tsx@4.22.1)(yaml@2.9.0))
+
   packages/basic:
     dependencies:
       '@prosekit/core':
@@ -484,6 +509,9 @@ importers:
 
   packages/prosekit:
     dependencies:
+      '@prosekit/ai':
+        specifier: workspace:*
+        version: link:../ai
       '@prosekit/basic':
         specifier: workspace:*
         version: link:../basic
@@ -967,6 +995,9 @@ importers:
       '@preact/preset-vite':
         specifier: ^2.10.5
         version: 2.10.5(@babel/core@7.29.0)(preact@10.29.1)(rollup@4.57.1)(vite@8.0.13(@types/node@24.12.2)(esbuild@0.28.0)(jiti@2.7.0)(sass@1.99.0)(tsx@4.22.1)(yaml@2.9.0))
+      '@prosekit/ai':
+        specifier: workspace:*
+        version: link:../packages/ai
       '@prosekit/config-vitest':
         specifier: workspace:*
         version: link:../packages/config-vitest

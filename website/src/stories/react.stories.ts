@@ -40,6 +40,7 @@ export const SaveJson = { args: { story: 'save-json' } }
 export const SaveMarkdown = { args: { story: 'save-markdown' } }
 export const Search = { args: { story: 'search' } }
 export const SlashMenu = { args: { story: 'slash-menu' } }
+export const StreamContent = { args: { story: 'stream-content' } }
 export const Strike = { args: { story: 'strike' } }
 export const SubSup = { args: { story: 'sub-sup' } }
 export const Table = { args: { story: 'table' } }
