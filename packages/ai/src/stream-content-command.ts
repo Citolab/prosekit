@@ -144,32 +144,38 @@ export interface StreamContentOptions {
   onStream: (write: (chunk: string) => void) => Promise<void> | void
 }
 
-/** HTML void elements — they have no matching close tag. */
-const VOID_ELEMENTS: ReadonlySet<string> = new Set([
-  'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input',
-  'link', 'meta', 'param', 'source', 'track', 'wbr',
-])
+/**
+ * Close tags that mark a "row-like" boundary at which it is meaningful to
+ * commit streamed content to the editor. After any of these closes, the
+ * browser's HTML parser will auto-close any still-open ancestors when we
+ * set `innerHTML`, so partial buffers parse cleanly.
+ */
+const FLUSH_TAG_RE
+  = /<\/(?:p|li|tr|td|th|h[1-6]|pre|blockquote|ul|ol|table|thead|tbody|tfoot)\s*>/gi
 
 /**
- * Find the longest prefix of `buffer` that is fully balanced (every opened
- * tag is closed). Returns the length of that prefix in characters. Anything
- * after it is partial — typically an open block that's still being streamed
- * — and committing it now would leave stale block remnants in the doc.
+ * Find the position right after the LAST flush-tag close in `buffer` that
+ * lies beyond `from`. Returns `from` when no new boundary has been emitted
+ * since the previous flush.
  */
-function findStablePrefixLength(buffer: string): number {
-  const tagRe = /<(\/?)([a-zA-Z][a-zA-Z0-9]*)\b[^>]*?(\/?)>/g
-  let depth = 0
-  let stable = 0
-  let match: RegExpExecArray | null
-  while ((match = tagRe.exec(buffer)) !== null) {
-    const [, slash, tag, selfClose] = match
-    if (!selfClose && !VOID_ELEMENTS.has(tag.toLowerCase())) {
-      if (slash) depth--
-      else depth++
-    }
-    if (depth === 0) stable = tagRe.lastIndex
+function findFlushBoundary(buffer: string, from: number): number {
+  FLUSH_TAG_RE.lastIndex = from
+  let end = from
+  while (FLUSH_TAG_RE.exec(buffer) !== null) {
+    end = FLUSH_TAG_RE.lastIndex
   }
-  return stable
+  return end
+}
+
+/**
+ * Strip a trailing unclosed `<…` token so `innerHTML =` doesn't treat
+ * partial markup as malformed text. Used on the final flush where we
+ * commit everything left in the buffer.
+ */
+function trimTrailingPartialTag(buffer: string): string {
+  const lastOpen = buffer.lastIndexOf('<')
+  const lastClose = buffer.lastIndexOf('>')
+  return lastOpen > lastClose ? buffer.slice(0, lastOpen) : buffer
 }
 
 let streamCounter = 0
@@ -215,11 +221,14 @@ export async function streamContent(
   let currentEnd = from
 
   const flush = (final: boolean): void => {
-    // On a non-final flush we only commit the balanced prefix of the buffer
-    // so that no half-open block (e.g. an empty `<li>`) ever lands in the
-    // document. The unbalanced tail stays in the buffer for next time. On
-    // the final flush we commit everything regardless.
-    const targetLength = final ? htmlBuffer.length : findStablePrefixLength(htmlBuffer)
+    // Non-final: commit up to the latest row-like close tag. Final: commit
+    // everything left, stripping any trailing unclosed `<…` so the browser's
+    // HTML parser doesn't choke. The browser auto-closes any still-open
+    // ancestors (e.g. `<tbody>`, `<table>`) when we set `innerHTML`, so the
+    // parsed slice is always well-formed.
+    const targetLength = final
+      ? trimTrailingPartialTag(htmlBuffer).length
+      : findFlushBoundary(htmlBuffer, lastFlushedLength)
     if (targetLength <= lastFlushedLength) return
     lastFlushedLength = targetLength
 
