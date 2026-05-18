@@ -195,7 +195,6 @@ export async function streamContent(
   const tempDiv = document.createElement('div')
 
   let htmlBuffer = ''
-  let currentEnd = from
   let lastFlushedLength = 0
 
   // Open the stream: delete the original range and mark the plugin state.
@@ -207,6 +206,13 @@ export async function streamContent(
     tr.setMeta('addToHistory', false)
     view.dispatch(tr)
   }
+
+  // Anchor the end of the streaming range to the doc tail. After every
+  // transaction `currentEnd = doc.content.size - tailSize`. This decouples
+  // position tracking from `slice.size` arithmetic, which can drift when
+  // `tr.replace` adjusts open boundaries.
+  const tailSize = view.state.doc.content.size - from
+  let currentEnd = from
 
   const flush = (final: boolean): void => {
     // On a non-final flush we only commit the balanced prefix of the buffer
@@ -222,7 +228,7 @@ export async function streamContent(
 
     const tr = view.state.tr
     tr.replace(from, currentEnd, slice)
-    currentEnd = from + slice.size
+    currentEnd = tr.doc.content.size - tailSize
 
     // Use Selection.near so we land in inline content even when the streamed
     // tail ends on a block boundary (e.g. an empty list item).
