@@ -7,13 +7,31 @@ on:
 
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
+  zizmor:
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: Run zizmor
+        uses: zizmorcore/zizmor-action@b1d7e1fb5de872772f31590499237e7cce841e8e # v0.5.3
+
   lint:
     timeout-minutes: 30
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
 
       - uses: ./.github/actions/setup
 
@@ -26,6 +44,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
 
       - uses: ./.github/actions/setup
 
@@ -43,6 +63,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
 
       - uses: ./.github/actions/setup
 
@@ -58,6 +80,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
 
       - uses: ./.github/actions/setup
 
@@ -77,6 +101,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
 
       - uses: ./.github/actions/setup
 
@@ -112,6 +138,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
 
       - uses: ./.github/actions/setup
 
@@ -134,9 +162,15 @@ jobs:
             --retry-wait-time 5
             --max-retries 5
             --exclude 'https://floating-ui.com'
-            --remap "^https://prosekit\.dev\/examples file://$(pwd)/examples"
-            --remap "^https://prosekit\.dev\/references file://$(pwd)/references"
+            --remap "^https://prosekit\.dev\/components file://$(pwd)/components"
+            --remap "^https://prosekit\.dev\/concepts file://$(pwd)/concepts"
             --remap "^https://prosekit\.dev\/extensions file://$(pwd)/extensions"
+            --remap "^https://prosekit\.dev\/examples file://$(pwd)/examples"
+            --remap "^https://prosekit\.dev\/frameworks file://$(pwd)/frameworks"
+            --remap "^https://prosekit\.dev\/getting-started file://$(pwd)/getting-started"
+            --remap "^https://prosekit\.dev\/guides file://$(pwd)/guides"
+            --remap "^https://prosekit\.dev\/migrating-from file://$(pwd)/migrating-from"
+            --remap "^https://prosekit\.dev\/references file://$(pwd)/references"
             './**/*.html'
           debug: false
           fail: true
@@ -148,11 +182,17 @@ jobs:
 
     needs: [build]
 
+    permissions:
+      contents: read
+      deployments: write
+
     env:
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
 
       - uses: ./.github/actions/setup
 
@@ -162,7 +202,7 @@ jobs:
         run: pnpm run build
 
       - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@9acf94ace14e7dc412b076f2c5c20b8ce93c79cd # v3.15.0
+        uses: cloudflare/wrangler-action@ebbaa1584979971c8614a24965b4405ff95890e0 # v4.0.0
         if: ${{ env.CLOUDFLARE_ACCOUNT_ID != '' }}
         with:
           apiToken: ${{ secrets.CLOUDFLARE_PAGES_API_TOKEN }}

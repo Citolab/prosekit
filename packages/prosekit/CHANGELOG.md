@@ -1,5 +1,47 @@
 # prosekit
 
+## 0.21.1
+
+### Patch Changes
+
+- [`031c430`](https://github.com/ocavue/prosekit/commit/031c4301cd8240c7674e88ea90a6feae5a916aef) ![](https://prosekit.dev/b/core)
+
+  Add the `extractSelection` test utility to `prosekit/core/test`, which reads the `<a>`/`<b>` selection tokens from a tagged ProseMirror document and returns the corresponding `Selection`.
+
+## 0.21.0
+
+### Minor Changes
+
+- [`8213beb`](https://github.com/ocavue/prosekit/commit/8213bebc6d1edf37c9f6af6660ee6089523710db) ![](https://prosekit.dev/b/extensions)
+
+  Add subscript and superscript extensions.
+
+- [`b0327c2`](https://github.com/ocavue/prosekit/commit/b0327c2a78046c459ec90e9dbdef6cc8999f1648) ![](https://prosekit.dev/b/extensions)
+
+  Add highlight extension.
+
+### Patch Changes
+
+- [`b8bf3b6`](https://github.com/ocavue/prosekit/commit/b8bf3b627c7561014f93003a3700cc98e7e70f51) ![](https://prosekit.dev/b/pm)
+
+  Update dependencies.
+
+## 0.20.2
+
+### Patch Changes
+
+- [`da8e84b`](https://github.com/ocavue/prosekit/commit/da8e84b9fc40fad007746746a1e5fbab33fbd968) ![](https://prosekit.dev/b/lit) ![](https://prosekit.dev/b/preact) ![](https://prosekit.dev/b/react) ![](https://prosekit.dev/b/solid) ![](https://prosekit.dev/b/svelte) ![](https://prosekit.dev/b/vue) ![](https://prosekit.dev/b/web)
+
+  Allow `AutocompleteRoot` to accept a custom `anchor` for popup positioning.
+
+## 0.20.1
+
+### Patch Changes
+
+- [`e6ba453`](https://github.com/ocavue/prosekit/commit/e6ba4536af2d07aea24d6748a04583cce3f87a11) ![](https://prosekit.dev/b/lit)
+
+  Add Lit entry points to the side effect list to prevent tree shaking from removing them.
+
 ## 0.20.0
 
 ### Minor Changes

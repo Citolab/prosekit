@@ -1,7 +1,7 @@
 {
   "name": "prosekit",
   "type": "module",
-  "version": "0.20.0",
+  "version": "0.21.1",
   "private": false,
   "description": "ProseKit: A toolkit for building rich text editors.",
   "author": {
@@ -55,6 +55,7 @@
     "./extensions/gap-cursor/style.css": "./src/extensions/gap-cursor/style.css",
     "./extensions/hard-break": "./src/extensions/hard-break.gen.ts",
     "./extensions/heading": "./src/extensions/heading.gen.ts",
+    "./extensions/highlight": "./src/extensions/highlight.gen.ts",
     "./extensions/horizontal-rule": "./src/extensions/horizontal-rule.gen.ts",
     "./extensions/image": "./src/extensions/image.gen.ts",
     "./extensions/input-rule": "./src/extensions/input-rule.gen.ts",
@@ -78,6 +79,8 @@
     "./extensions/search": "./src/extensions/search.gen.ts",
     "./extensions/search/style.css": "./src/extensions/search/style.css",
     "./extensions/strike": "./src/extensions/strike.gen.ts",
+    "./extensions/subscript": "./src/extensions/subscript.gen.ts",
+    "./extensions/superscript": "./src/extensions/superscript.gen.ts",
     "./extensions/table": "./src/extensions/table.gen.ts",
     "./extensions/table/style.css": "./src/extensions/table/style.css",
     "./extensions/text": "./src/extensions/text.gen.ts",
@@ -240,11 +243,11 @@
     "@prosekit/typedoc-plugin": "workspace:*",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "loro-crdt": "^1.12.0",
+    "loro-crdt": "^1.12.1",
     "loro-prosemirror": "^0.4.3",
     "preact": "^10.29.1",
-    "react": "^19.2.5",
-    "react-dom": "^19.2.5",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
     "solid-js": "^1.9.12",
     "svelte": "^5.55.5",
     "tsdown": "catalog:",
@@ -255,7 +258,7 @@
     "typedoc-plugin-md": "^0.7.1",
     "typedoc-plugin-mdn-links": "^5.1.1",
     "typescript": "catalog:",
-    "vue": "^3.5.33",
+    "vue": "^3.5.34",
     "y-prosemirror": "^1.3.7",
     "yjs": "^13.6.30"
   },
@@ -360,6 +363,10 @@
         "types": "./dist/extensions/heading.d.ts",
         "default": "./dist/extensions/heading.js"
       },
+      "./extensions/highlight": {
+        "types": "./dist/extensions/highlight.d.ts",
+        "default": "./dist/extensions/highlight.js"
+      },
       "./extensions/horizontal-rule": {
         "types": "./dist/extensions/horizontal-rule.d.ts",
         "default": "./dist/extensions/horizontal-rule.js"
@@ -446,6 +453,14 @@
       "./extensions/strike": {
         "types": "./dist/extensions/strike.d.ts",
         "default": "./dist/extensions/strike.js"
+      },
+      "./extensions/subscript": {
+        "types": "./dist/extensions/subscript.d.ts",
+        "default": "./dist/extensions/subscript.js"
+      },
+      "./extensions/superscript": {
+        "types": "./dist/extensions/superscript.d.ts",
+        "default": "./dist/extensions/superscript.js"
       },
       "./extensions/table": {
         "types": "./dist/extensions/table.d.ts",
@@ -872,6 +887,9 @@
         "extensions/heading": [
           "./dist/extensions/heading.d.ts"
         ],
+        "extensions/highlight": [
+          "./dist/extensions/highlight.d.ts"
+        ],
         "extensions/horizontal-rule": [
           "./dist/extensions/horizontal-rule.d.ts"
         ],
@@ -925,6 +943,12 @@
         ],
         "extensions/strike": [
           "./dist/extensions/strike.d.ts"
+        ],
+        "extensions/subscript": [
+          "./dist/extensions/subscript.d.ts"
+        ],
+        "extensions/superscript": [
+          "./dist/extensions/superscript.d.ts"
         ],
         "extensions/table": [
           "./dist/extensions/table.d.ts"

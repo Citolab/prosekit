@@ -145,6 +145,17 @@
       "hidden": false,
       "description": "Example for heading node with multiple levels."
     },
+    "highlight": {
+      "frameworks": [
+        "react",
+        "preact",
+        "vue",
+        "svelte",
+        "solid"
+      ],
+      "hidden": false,
+      "description": "Example for highlighting text (like a highlighter pen)."
+    },
     "horizontal-rule": {
       "frameworks": [
         "react",
@@ -188,6 +199,17 @@
       ],
       "hidden": false,
       "description": "Example for italic mark."
+    },
+    "katex": {
+      "frameworks": [
+        "react",
+        "preact",
+        "vue",
+        "svelte",
+        "solid"
+      ],
+      "hidden": false,
+      "description": "Math equation rendering using the KaTeX library."
     },
     "keymap": {
       "frameworks": [
@@ -395,6 +417,17 @@
       "hidden": false,
       "description": "Example for strikethrough mark."
     },
+    "sub-sup": {
+      "frameworks": [
+        "react",
+        "preact",
+        "vue",
+        "svelte",
+        "solid"
+      ],
+      "hidden": false,
+      "description": "Example for subscript and superscript marks."
+    },
     "table": {
       "frameworks": [
         "react",
@@ -406,15 +439,6 @@
       ],
       "hidden": false,
       "description": "Table node with row and column operations."
-    },
-    "temml": {
-      "frameworks": [
-        "react",
-        "preact",
-        "solid"
-      ],
-      "hidden": false,
-      "description": "Math equation rendering using the Temml library."
     },
     "text-align": {
       "frameworks": [
@@ -545,14 +569,6 @@
       ],
       "hidden": false,
       "description": "Real-time collaboration using Yjs CRDT library."
-    },
-    "katex": {
-      "frameworks": [
-        "vue",
-        "svelte"
-      ],
-      "hidden": false,
-      "description": "Math equation rendering using the KaTeX library."
     },
     "column-layout": {
       "frameworks": [
@@ -755,6 +771,18 @@
         "registry/src/react/ui/toolbar/toolbar.tsx"
       ]
     },
+    "react-example-highlight": {
+      "story": "highlight",
+      "files": [
+        "registry/src/react/examples/highlight/editor.tsx",
+        "registry/src/react/examples/highlight/extension.ts",
+        "registry/src/react/examples/highlight/index.ts",
+        "registry/src/react/examples/highlight/toolbar.tsx",
+        "registry/src/react/sample/sample-doc-highlight.ts",
+        "registry/src/react/ui/button/button.tsx",
+        "registry/src/react/ui/button/index.ts"
+      ]
+    },
     "react-example-horizontal-rule": {
       "story": "horizontal-rule",
       "files": [
@@ -807,6 +835,16 @@
         "registry/src/react/ui/image-upload-popover/index.ts",
         "registry/src/react/ui/toolbar/index.ts",
         "registry/src/react/ui/toolbar/toolbar.tsx"
+      ]
+    },
+    "react-example-katex": {
+      "story": "katex",
+      "files": [
+        "registry/src/react/examples/katex/editor.tsx",
+        "registry/src/react/examples/katex/extension.ts",
+        "registry/src/react/examples/katex/index.ts",
+        "registry/src/react/sample/katex.ts",
+        "registry/src/react/sample/sample-doc-tex.ts"
       ]
     },
     "react-example-keymap": {
@@ -1061,6 +1099,18 @@
         "registry/src/react/ui/button/index.ts"
       ]
     },
+    "react-example-sub-sup": {
+      "story": "sub-sup",
+      "files": [
+        "registry/src/react/examples/sub-sup/editor.tsx",
+        "registry/src/react/examples/sub-sup/extension.ts",
+        "registry/src/react/examples/sub-sup/index.ts",
+        "registry/src/react/examples/sub-sup/toolbar.tsx",
+        "registry/src/react/sample/sample-doc-sub-sup.ts",
+        "registry/src/react/ui/button/button.tsx",
+        "registry/src/react/ui/button/index.ts"
+      ]
+    },
     "react-example-table": {
       "story": "table",
       "files": [
@@ -1070,16 +1120,6 @@
         "registry/src/react/sample/sample-doc-table.ts",
         "registry/src/react/ui/table-handle/index.ts",
         "registry/src/react/ui/table-handle/table-handle.tsx"
-      ]
-    },
-    "react-example-temml": {
-      "story": "temml",
-      "files": [
-        "registry/src/react/examples/temml/editor.tsx",
-        "registry/src/react/examples/temml/extension.ts",
-        "registry/src/react/examples/temml/index.ts",
-        "registry/src/react/sample/sample-doc-tex.ts",
-        "registry/src/react/sample/temml.ts"
       ]
     },
     "react-example-text-align": {
@@ -1430,6 +1470,18 @@
         "registry/src/preact/ui/toolbar/toolbar.tsx"
       ]
     },
+    "preact-example-highlight": {
+      "story": "highlight",
+      "files": [
+        "registry/src/preact/examples/highlight/editor.tsx",
+        "registry/src/preact/examples/highlight/extension.ts",
+        "registry/src/preact/examples/highlight/index.ts",
+        "registry/src/preact/examples/highlight/toolbar.tsx",
+        "registry/src/preact/sample/sample-doc-highlight.ts",
+        "registry/src/preact/ui/button/button.tsx",
+        "registry/src/preact/ui/button/index.ts"
+      ]
+    },
     "preact-example-horizontal-rule": {
       "story": "horizontal-rule",
       "files": [
@@ -1482,6 +1534,16 @@
         "registry/src/preact/ui/image-upload-popover/index.ts",
         "registry/src/preact/ui/toolbar/index.ts",
         "registry/src/preact/ui/toolbar/toolbar.tsx"
+      ]
+    },
+    "preact-example-katex": {
+      "story": "katex",
+      "files": [
+        "registry/src/preact/examples/katex/editor.tsx",
+        "registry/src/preact/examples/katex/extension.ts",
+        "registry/src/preact/examples/katex/index.ts",
+        "registry/src/preact/sample/katex.ts",
+        "registry/src/preact/sample/sample-doc-tex.ts"
       ]
     },
     "preact-example-keymap": {
@@ -1688,6 +1750,18 @@
         "registry/src/preact/ui/button/index.ts"
       ]
     },
+    "preact-example-sub-sup": {
+      "story": "sub-sup",
+      "files": [
+        "registry/src/preact/examples/sub-sup/editor.tsx",
+        "registry/src/preact/examples/sub-sup/extension.ts",
+        "registry/src/preact/examples/sub-sup/index.ts",
+        "registry/src/preact/examples/sub-sup/toolbar.tsx",
+        "registry/src/preact/sample/sample-doc-sub-sup.ts",
+        "registry/src/preact/ui/button/button.tsx",
+        "registry/src/preact/ui/button/index.ts"
+      ]
+    },
     "preact-example-table": {
       "story": "table",
       "files": [
@@ -1697,16 +1771,6 @@
         "registry/src/preact/sample/sample-doc-table.ts",
         "registry/src/preact/ui/table-handle/index.ts",
         "registry/src/preact/ui/table-handle/table-handle.tsx"
-      ]
-    },
-    "preact-example-temml": {
-      "story": "temml",
-      "files": [
-        "registry/src/preact/examples/temml/editor.tsx",
-        "registry/src/preact/examples/temml/extension.ts",
-        "registry/src/preact/examples/temml/index.ts",
-        "registry/src/preact/sample/sample-doc-tex.ts",
-        "registry/src/preact/sample/temml.ts"
       ]
     },
     "preact-example-text-align": {
@@ -2046,6 +2110,18 @@
         "registry/src/vue/ui/toolbar/toolbar.vue"
       ]
     },
+    "vue-example-highlight": {
+      "story": "highlight",
+      "files": [
+        "registry/src/vue/examples/highlight/editor.vue",
+        "registry/src/vue/examples/highlight/extension.ts",
+        "registry/src/vue/examples/highlight/index.ts",
+        "registry/src/vue/examples/highlight/toolbar.vue",
+        "registry/src/vue/sample/sample-doc-highlight.ts",
+        "registry/src/vue/ui/button/button.vue",
+        "registry/src/vue/ui/button/index.ts"
+      ]
+    },
     "vue-example-horizontal-rule": {
       "story": "horizontal-rule",
       "files": [
@@ -2310,6 +2386,18 @@
         "registry/src/vue/examples/strike/index.ts",
         "registry/src/vue/examples/strike/toolbar.vue",
         "registry/src/vue/sample/sample-doc-strike.ts",
+        "registry/src/vue/ui/button/button.vue",
+        "registry/src/vue/ui/button/index.ts"
+      ]
+    },
+    "vue-example-sub-sup": {
+      "story": "sub-sup",
+      "files": [
+        "registry/src/vue/examples/sub-sup/editor.vue",
+        "registry/src/vue/examples/sub-sup/extension.ts",
+        "registry/src/vue/examples/sub-sup/index.ts",
+        "registry/src/vue/examples/sub-sup/toolbar.vue",
+        "registry/src/vue/sample/sample-doc-sub-sup.ts",
         "registry/src/vue/ui/button/button.vue",
         "registry/src/vue/ui/button/index.ts"
       ]
@@ -2764,6 +2852,18 @@
         "registry/src/svelte/ui/toolbar/toolbar.svelte"
       ]
     },
+    "svelte-example-highlight": {
+      "story": "highlight",
+      "files": [
+        "registry/src/svelte/examples/highlight/editor.svelte",
+        "registry/src/svelte/examples/highlight/extension.ts",
+        "registry/src/svelte/examples/highlight/index.ts",
+        "registry/src/svelte/examples/highlight/toolbar.svelte",
+        "registry/src/svelte/sample/sample-doc-highlight.ts",
+        "registry/src/svelte/ui/button/button.svelte",
+        "registry/src/svelte/ui/button/index.ts"
+      ]
+    },
     "svelte-example-horizontal-rule": {
       "story": "horizontal-rule",
       "files": [
@@ -3037,6 +3137,18 @@
         "registry/src/svelte/examples/strike/index.ts",
         "registry/src/svelte/examples/strike/toolbar.svelte",
         "registry/src/svelte/sample/sample-doc-strike.ts",
+        "registry/src/svelte/ui/button/button.svelte",
+        "registry/src/svelte/ui/button/index.ts"
+      ]
+    },
+    "svelte-example-sub-sup": {
+      "story": "sub-sup",
+      "files": [
+        "registry/src/svelte/examples/sub-sup/editor.svelte",
+        "registry/src/svelte/examples/sub-sup/extension.ts",
+        "registry/src/svelte/examples/sub-sup/index.ts",
+        "registry/src/svelte/examples/sub-sup/toolbar.svelte",
+        "registry/src/svelte/sample/sample-doc-sub-sup.ts",
         "registry/src/svelte/ui/button/button.svelte",
         "registry/src/svelte/ui/button/index.ts"
       ]
@@ -3389,6 +3501,18 @@
         "registry/src/solid/ui/toolbar/toolbar.tsx"
       ]
     },
+    "solid-example-highlight": {
+      "story": "highlight",
+      "files": [
+        "registry/src/solid/examples/highlight/editor.tsx",
+        "registry/src/solid/examples/highlight/extension.ts",
+        "registry/src/solid/examples/highlight/index.ts",
+        "registry/src/solid/examples/highlight/toolbar.tsx",
+        "registry/src/solid/sample/sample-doc-highlight.ts",
+        "registry/src/solid/ui/button/button.tsx",
+        "registry/src/solid/ui/button/index.ts"
+      ]
+    },
     "solid-example-horizontal-rule": {
       "story": "horizontal-rule",
       "files": [
@@ -3441,6 +3565,16 @@
         "registry/src/solid/ui/image-upload-popover/index.ts",
         "registry/src/solid/ui/toolbar/index.ts",
         "registry/src/solid/ui/toolbar/toolbar.tsx"
+      ]
+    },
+    "solid-example-katex": {
+      "story": "katex",
+      "files": [
+        "registry/src/solid/examples/katex/editor.tsx",
+        "registry/src/solid/examples/katex/extension.ts",
+        "registry/src/solid/examples/katex/index.ts",
+        "registry/src/solid/sample/katex.ts",
+        "registry/src/solid/sample/sample-doc-tex.ts"
       ]
     },
     "solid-example-keymap": {
@@ -3647,6 +3781,18 @@
         "registry/src/solid/ui/button/index.ts"
       ]
     },
+    "solid-example-sub-sup": {
+      "story": "sub-sup",
+      "files": [
+        "registry/src/solid/examples/sub-sup/editor.tsx",
+        "registry/src/solid/examples/sub-sup/extension.ts",
+        "registry/src/solid/examples/sub-sup/index.ts",
+        "registry/src/solid/examples/sub-sup/toolbar.tsx",
+        "registry/src/solid/sample/sample-doc-sub-sup.ts",
+        "registry/src/solid/ui/button/button.tsx",
+        "registry/src/solid/ui/button/index.ts"
+      ]
+    },
     "solid-example-table": {
       "story": "table",
       "files": [
@@ -3656,16 +3802,6 @@
         "registry/src/solid/sample/sample-doc-table.ts",
         "registry/src/solid/ui/table-handle/index.ts",
         "registry/src/solid/ui/table-handle/table-handle.tsx"
-      ]
-    },
-    "solid-example-temml": {
-      "story": "temml",
-      "files": [
-        "registry/src/solid/examples/temml/editor.tsx",
-        "registry/src/solid/examples/temml/extension.ts",
-        "registry/src/solid/examples/temml/index.ts",
-        "registry/src/solid/sample/sample-doc-tex.ts",
-        "registry/src/solid/sample/temml.ts"
       ]
     },
     "solid-example-text-align": {

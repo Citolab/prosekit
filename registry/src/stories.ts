@@ -57,6 +57,10 @@ const stories: ReadonlyArray<{ name: string; description: string; hidden?: boole
     description: 'Example for heading node with multiple levels.',
   },
   {
+    name: 'highlight',
+    description: 'Example for highlighting text (like a highlighter pen).',
+  },
+  {
     name: 'horizontal-rule',
     description: 'Example for horizontal rule node.',
   },
@@ -154,12 +158,12 @@ const stories: ReadonlyArray<{ name: string; description: string; hidden?: boole
     description: 'Example for strikethrough mark.',
   },
   {
-    name: 'table',
-    description: 'Table node with row and column operations.',
+    name: 'sub-sup',
+    description: 'Example for subscript and superscript marks.',
   },
   {
-    name: 'temml',
-    description: 'Math equation rendering using the Temml library.',
+    name: 'table',
+    description: 'Table node with row and column operations.',
   },
   {
     name: 'text-align',

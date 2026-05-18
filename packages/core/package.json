@@ -1,7 +1,7 @@
 {
   "name": "@prosekit/core",
   "type": "module",
-  "version": "0.12.0",
+  "version": "0.12.2",
   "private": false,
   "description": "Core features for ProseKit",
   "author": {
@@ -52,7 +52,7 @@
     "tsdown": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:",
-    "vitest-browser-commands": "^0.2.0"
+    "vitest-browser-commands": "^0.2.1"
   },
   "publishConfig": {
     "exports": {

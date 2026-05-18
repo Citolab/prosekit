@@ -21,6 +21,7 @@ import { defineCode } from '../code/index.ts'
 import { defineDoc } from '../doc/index.ts'
 import { defineHardBreak } from '../hard-break/index.ts'
 import { defineHeading } from '../heading/index.ts'
+import { defineHighlight } from '../highlight/index.ts'
 import { defineHorizontalRule } from '../horizontal-rule/index.ts'
 import { defineImage } from '../image/index.ts'
 import { defineItalic } from '../italic/index.ts'
@@ -29,6 +30,8 @@ import { defineList, type ListAttrs } from '../list/index.ts'
 import { defineMath } from '../math/index.ts'
 import { defineParagraph } from '../paragraph/index.ts'
 import { defineStrike } from '../strike/index.ts'
+import { defineSubscript } from '../subscript/index.ts'
+import { defineSuperscript } from '../superscript/index.ts'
 import { defineTable } from '../table/index.ts'
 import type { CellAttrs } from '../table/table-spec.ts'
 import { defineTextColor } from '../text-color/index.ts'
@@ -46,6 +49,7 @@ export function defineTestExtension() {
     defineDoc(),
     defineText(),
     defineHeading(),
+    defineHighlight(),
     defineHistory(),
     defineList(),
     defineBlockquote(),
@@ -55,6 +59,8 @@ export function defineTestExtension() {
     defineBold(),
     defineUnderline(),
     defineStrike(),
+    defineSubscript(),
+    defineSuperscript(),
     defineCode(),
     defineTextColor(),
     defineBackgroundColor(),

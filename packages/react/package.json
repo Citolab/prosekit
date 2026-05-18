@@ -1,7 +1,7 @@
 {
   "name": "@prosekit/react",
   "type": "module",
-  "version": "0.7.0",
+  "version": "0.7.3",
   "private": false,
   "description": "React components and utilities for ProseKit",
   "author": {
@@ -71,8 +71,8 @@
     "@prosekit/testing": "workspace:*",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "react": "^19.2.5",
-    "react-dom": "^19.2.5",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
     "tsdown": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:",
