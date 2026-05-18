@@ -8,6 +8,7 @@
 
 export {
   createStreamingPlugin,
+  DEFAULT_FLUSH_TAGS,
   streamContent,
   streamContentCommand,
   streamingPluginKey,

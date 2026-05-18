@@ -18,6 +18,7 @@
     "./lit/examples/code-block": "./src/lit/examples/code-block/index.ts",
     "./lit/examples/minimal": "./src/lit/examples/minimal/index.ts",
     "./lit/examples/slash-menu": "./src/lit/examples/slash-menu/index.ts",
+    "./lit/examples/stream-content": "./src/lit/examples/stream-content/index.ts",
     "./lit/examples/table": "./src/lit/examples/table/index.ts",
     "./lit/examples/toolbar": "./src/lit/examples/toolbar/index.ts",
     "./lit/renderer": "./src/lit/renderer.ts",

@@ -142,6 +142,17 @@ export interface StreamContentOptions {
    * parse boundary (or when the stream ends).
    */
   onStream: (write: (chunk: string) => void) => Promise<void> | void
+
+  /**
+   * Extra HTML tag names (without `<`, `</`, `>`) that should trigger a
+   * flush when their close tag appears in the buffer. Appended to
+   * {@link DEFAULT_FLUSH_TAGS}. Useful when the streamed markup contains
+   * custom block-like elements (e.g. a `<my-row>` web component) that the
+   * default list doesn't know about.
+   *
+   * Tag names are sanitized; only `[a-zA-Z][a-zA-Z0-9-]*` are accepted.
+   */
+  extraFlushTags?: readonly string[]
 }
 
 /**
@@ -150,19 +161,33 @@ export interface StreamContentOptions {
  * browser's HTML parser will auto-close any still-open ancestors when we
  * set `innerHTML`, so partial buffers parse cleanly.
  */
-const FLUSH_TAG_RE
-  = /<\/(?:p|li|tr|td|th|h[1-6]|pre|blockquote|ul|ol|table|thead|tbody|tfoot)\s*>/gi
+export const DEFAULT_FLUSH_TAGS: readonly string[] = [
+  'p', 'li', 'tr', 'td', 'th',
+  'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+  'pre', 'blockquote',
+  'ul', 'ol',
+  'table', 'thead', 'tbody', 'tfoot',
+]
+
+const TAG_NAME_RE = /^[A-Za-z][\dA-Za-z-]*$/
+
+function buildFlushRe(extra: readonly string[] | undefined): RegExp {
+  const tags = extra && extra.length > 0
+    ? [...DEFAULT_FLUSH_TAGS, ...extra.filter((t) => TAG_NAME_RE.test(t))]
+    : DEFAULT_FLUSH_TAGS
+  return new RegExp(String.raw`</(?:${tags.join('|')})\s*>`, 'gi')
+}
 
 /**
  * Find the position right after the LAST flush-tag close in `buffer` that
  * lies beyond `from`. Returns `from` when no new boundary has been emitted
  * since the previous flush.
  */
-function findFlushBoundary(buffer: string, from: number): number {
-  FLUSH_TAG_RE.lastIndex = from
+function findFlushBoundary(buffer: string, from: number, flushRe: RegExp): number {
+  flushRe.lastIndex = from
   let end = from
-  while (FLUSH_TAG_RE.exec(buffer) !== null) {
-    end = FLUSH_TAG_RE.lastIndex
+  while (flushRe.exec(buffer) !== null) {
+    end = flushRe.lastIndex
   }
   return end
 }
@@ -199,6 +224,7 @@ export async function streamContent(
   const schema = view.state.schema
   const domParser = DOMParser.fromSchema(schema)
   const tempDiv = document.createElement('div')
+  const flushRe = buildFlushRe(options.extraFlushTags)
 
   let htmlBuffer = ''
   let lastFlushedLength = 0
@@ -228,7 +254,7 @@ export async function streamContent(
     // parsed slice is always well-formed.
     const targetLength = final
       ? trimTrailingPartialTag(htmlBuffer).length
-      : findFlushBoundary(htmlBuffer, lastFlushedLength)
+      : findFlushBoundary(htmlBuffer, lastFlushedLength, flushRe)
     if (targetLength <= lastFlushedLength) return
     lastFlushedLength = targetLength
 
