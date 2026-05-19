@@ -101,6 +101,17 @@
       "hidden": false,
       "description": "Auto-convert text shortcuts to emojis using input rules."
     },
+    "font-family": {
+      "frameworks": [
+        "react",
+        "preact",
+        "vue",
+        "svelte",
+        "solid"
+      ],
+      "hidden": false,
+      "description": "Change the font family of text."
+    },
     "full": {
       "frameworks": [
         "react",
@@ -183,6 +194,7 @@
         "react",
         "preact",
         "vue",
+        "lit",
         "svelte",
         "solid"
       ],
@@ -694,6 +706,16 @@
         "registry/src/react/examples/emoji-rules/emoji.ts",
         "registry/src/react/examples/emoji-rules/extension.ts",
         "registry/src/react/examples/emoji-rules/index.ts"
+      ]
+    },
+    "react-example-font-family": {
+      "story": "font-family",
+      "files": [
+        "registry/src/react/examples/font-family/editor.tsx",
+        "registry/src/react/examples/font-family/extension.ts",
+        "registry/src/react/examples/font-family/index.ts",
+        "registry/src/react/examples/font-family/toolbar.tsx",
+        "registry/src/react/sample/sample-doc-font-family.ts"
       ]
     },
     "react-example-full": {
@@ -1409,6 +1431,16 @@
         "registry/src/preact/examples/emoji-rules/index.ts"
       ]
     },
+    "preact-example-font-family": {
+      "story": "font-family",
+      "files": [
+        "registry/src/preact/examples/font-family/editor.tsx",
+        "registry/src/preact/examples/font-family/extension.ts",
+        "registry/src/preact/examples/font-family/index.ts",
+        "registry/src/preact/examples/font-family/toolbar.tsx",
+        "registry/src/preact/sample/sample-doc-font-family.ts"
+      ]
+    },
     "preact-example-full": {
       "story": "full",
       "files": [
@@ -2049,6 +2081,16 @@
         "registry/src/vue/examples/emoji-rules/index.ts"
       ]
     },
+    "vue-example-font-family": {
+      "story": "font-family",
+      "files": [
+        "registry/src/vue/examples/font-family/editor.vue",
+        "registry/src/vue/examples/font-family/extension.ts",
+        "registry/src/vue/examples/font-family/index.ts",
+        "registry/src/vue/examples/font-family/toolbar.vue",
+        "registry/src/vue/sample/sample-doc-font-family.ts"
+      ]
+    },
     "vue-example-full": {
       "story": "full",
       "files": [
@@ -2619,6 +2661,20 @@
         "registry/src/lit/ui/toolbar/toolbar.ts"
       ]
     },
+    "lit-example-inline-menu": {
+      "story": "inline-menu",
+      "files": [
+        "registry/src/lit/examples/inline-menu/editor.ts",
+        "registry/src/lit/examples/inline-menu/extension.ts",
+        "registry/src/lit/examples/inline-menu/index.ts",
+        "registry/src/lit/sample/sample-doc-inline-menu.ts",
+        "registry/src/lit/ui/button/button.ts",
+        "registry/src/lit/ui/button/index.ts",
+        "registry/src/lit/ui/editor-context.ts",
+        "registry/src/lit/ui/inline-menu/index.ts",
+        "registry/src/lit/ui/inline-menu/inline-menu.ts"
+      ]
+    },
     "lit-example-minimal": {
       "story": "minimal",
       "files": [
@@ -2793,6 +2849,16 @@
         "registry/src/svelte/examples/emoji-rules/emoji.ts",
         "registry/src/svelte/examples/emoji-rules/extension.ts",
         "registry/src/svelte/examples/emoji-rules/index.ts"
+      ]
+    },
+    "svelte-example-font-family": {
+      "story": "font-family",
+      "files": [
+        "registry/src/svelte/examples/font-family/editor.svelte",
+        "registry/src/svelte/examples/font-family/extension.ts",
+        "registry/src/svelte/examples/font-family/index.ts",
+        "registry/src/svelte/examples/font-family/toolbar.svelte",
+        "registry/src/svelte/sample/sample-doc-font-family.ts"
       ]
     },
     "svelte-example-full": {
@@ -3442,6 +3508,16 @@
         "registry/src/solid/examples/emoji-rules/emoji.ts",
         "registry/src/solid/examples/emoji-rules/extension.ts",
         "registry/src/solid/examples/emoji-rules/index.ts"
+      ]
+    },
+    "solid-example-font-family": {
+      "story": "font-family",
+      "files": [
+        "registry/src/solid/examples/font-family/editor.tsx",
+        "registry/src/solid/examples/font-family/extension.ts",
+        "registry/src/solid/examples/font-family/index.ts",
+        "registry/src/solid/examples/font-family/toolbar.tsx",
+        "registry/src/solid/sample/sample-doc-font-family.ts"
       ]
     },
     "solid-example-full": {
