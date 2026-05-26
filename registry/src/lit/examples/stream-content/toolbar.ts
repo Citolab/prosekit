@@ -7,6 +7,7 @@ import { editorContext } from '../../ui/editor-context'
 
 const API_KEY_STORAGE_KEY = 'prosekit-stream-content-api-key'
 const MODEL_STORAGE_KEY = 'prosekit-stream-content-model'
+const ENDPOINT_STORAGE_KEY = 'prosekit-stream-content-endpoint'
 const DEFAULT_MODEL = 'gpt-4o-mini'
 
 function readStorage(key: string, fallback = ''): string {
@@ -31,12 +32,14 @@ export class LitStreamContentToolbar extends LitElement {
   static override properties = {
     apiKey: { state: true },
     model: { state: true },
+    endpoint: { state: true },
     prompt: { state: true },
     streaming: { state: true },
   }
 
   private apiKey = ''
   private model = DEFAULT_MODEL
+  private endpoint = ''
   private prompt = 'Write a short article about prosemirror.'
   private streaming = false
   private abortController: AbortController | null = null
@@ -54,6 +57,7 @@ export class LitStreamContentToolbar extends LitElement {
     super.connectedCallback()
     this.apiKey = readStorage(API_KEY_STORAGE_KEY)
     this.model = readStorage(MODEL_STORAGE_KEY, DEFAULT_MODEL)
+    this.endpoint = readStorage(ENDPOINT_STORAGE_KEY)
     this.classList.add('contents')
   }
 
@@ -67,6 +71,11 @@ export class LitStreamContentToolbar extends LitElement {
     writeStorage(MODEL_STORAGE_KEY, this.model)
   }
 
+  private onEndpointInput = (event: Event): void => {
+    this.endpoint = (event.target as HTMLInputElement).value
+    writeStorage(ENDPOINT_STORAGE_KEY, this.endpoint)
+  }
+
   private onPromptInput = (event: Event): void => {
     this.prompt = (event.target as HTMLInputElement).value
   }
@@ -74,7 +83,7 @@ export class LitStreamContentToolbar extends LitElement {
   private onSubmit = async (event: Event): Promise<void> => {
     event.preventDefault()
     const editor = this.editorConsumer.value
-    if (!editor || !this.apiKey || !this.prompt || this.streaming) return
+    if (!editor || !this.apiKey || !this.endpoint || !this.prompt || this.streaming) return
 
     const controller = new AbortController()
     this.abortController = controller
@@ -89,6 +98,7 @@ export class LitStreamContentToolbar extends LitElement {
         signal: controller.signal,
         onStream: (write) =>
           streamFromOpenAI({
+            endpoint: this.endpoint,
             apiKey: this.apiKey,
             model: this.model || DEFAULT_MODEL,
             prompt: this.prompt,
@@ -123,10 +133,19 @@ export class LitStreamContentToolbar extends LitElement {
         class="CSS_TOOLBAR not-content flex-col items-stretch gap-2"
       >
         <input
+          type="url"
+          autocomplete="off"
+          spellcheck="false"
+          placeholder="API endpoint URL (stored in localStorage)"
+          .value=${this.endpoint}
+          @input=${this.onEndpointInput}
+          class="${inputCls} w-full"
+        />
+        <input
           type="password"
           autocomplete="off"
           spellcheck="false"
-          placeholder="Azure Foundry API key (stored in localStorage)"
+          placeholder="API key (stored in localStorage)"
           .value=${this.apiKey}
           @input=${this.onApiKeyInput}
           class="${inputCls} w-full"
@@ -160,7 +179,7 @@ export class LitStreamContentToolbar extends LitElement {
             : html`
                 <button
                   type="submit"
-                  ?disabled=${!this.apiKey || !this.prompt}
+                  ?disabled=${!this.apiKey || !this.endpoint || !this.prompt}
                   class="px-3 py-1 rounded bg-blue-600 text-white text-sm hover:bg-blue-700 disabled:opacity-40 disabled:cursor-not-allowed"
                 >
                   Generate

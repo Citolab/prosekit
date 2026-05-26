@@ -5,6 +5,13 @@
   "references/basic/stylecss",
   "references/basic/typographycss",
   {
+    "label": "ai",
+    "collapsed": true,
+    "items": [
+      "references/ai"
+    ]
+  },
+  {
     "label": "extensions",
     "collapsed": true,
     "items": [

@@ -39,7 +39,9 @@
   },
   "dependencies": {
     "@prosekit/core": "workspace:^",
-    "@prosekit/pm": "workspace:^"
+    "@prosekit/extensions": "workspace:^",
+    "@prosekit/pm": "workspace:^",
+    "prosemirror-changeset": "^2.4.1"
   },
   "devDependencies": {
     "@prosekit/config-tsdown": "workspace:*",
@@ -51,18 +53,17 @@
   "publishConfig": {
     "exports": {
       ".": {
-        "types": "./dist/prosekit-ai.d.ts",
-        "default": "./dist/prosekit-ai.js"
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
       }
     },
-    "dev": {},
-    "main": "./dist/prosekit-ai.js",
-    "module": "./dist/prosekit-ai.js",
-    "types": "./dist/prosekit-ai.d.ts",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
     "typesVersions": {
       "*": {
         ".": [
-          "./dist/prosekit-ai.d.ts"
+          "./dist/index.d.ts"
         ]
       }
     }

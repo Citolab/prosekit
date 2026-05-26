@@ -1,15 +1,22 @@
 const SYSTEM_PROMPT
-  = `You are a writing assistant whose output is rendered as rich-text inside a ProseMirror editor.
+  = `You are a chat assistant embedded next to a rich-text editor. You help the user understand, summarise and rewrite the document they are editing.
 
-Respond with well-formed HTML only. Allowed tags: <p>, <h1>, <h2>, <h3>, <ul>, <ol>, <li>, <strong>, <em>, <code>, <pre>, <blockquote>.
+When useful, structure your reply as well-formed HTML. Allowed tags: <p>, <h2>, <h3>, <ul>, <ol>, <li>, <strong>, <em>, <code>, <pre>, <blockquote>.
 
-Do not include <html>, <head>, <body>, <div>, <span>, class, style, ids, markdown, code fences, or commentary about the HTML — just the content itself.`
+If the answer is a single sentence, return a single <p>. Do not include <html>, <head>, <body>, <div>, <span>, class, style, ids, markdown, code fences, or commentary about the HTML — just the content itself.`
 
-export interface OpenAIStreamOptions {
+export interface ChatMessage {
+  role: 'user' | 'assistant'
+  content: string
+}
+
+export interface OpenAIChatStreamOptions {
   endpoint: string
   apiKey: string
   model: string
-  prompt: string
+  messages: ChatMessage[]
+  documentHtml: string
+  selectionHtml?: string
   write: (chunk: string) => void
   signal?: AbortSignal
 }
@@ -21,14 +28,21 @@ interface ResponsesStreamEvent {
   error?: { message?: string }
 }
 
-/**
- * Call the Azure Foundry Responses streaming endpoint and forward each
- * text delta to `write`. Server-Sent Events arrive as `event: <type>` +
- * `data: <json>` pairs separated by blank lines. We only forward
- * `response.output_text.delta` events.
- */
-export async function streamFromOpenAI(options: OpenAIStreamOptions): Promise<void> {
-  const { endpoint, apiKey, model, prompt, write, signal } = options
+export async function streamChatFromOpenAI(options: OpenAIChatStreamOptions): Promise<void> {
+  const { endpoint, apiKey, model, messages, documentHtml, selectionHtml, write, signal } = options
+
+  const contextBlock
+    = `<document>\n${documentHtml}\n</document>`
+    + (selectionHtml ? `\n\n<selection>\n${selectionHtml}\n</selection>` : '')
+
+  // The Responses API takes a single `input` string. Render the conversation
+  // as a simple transcript so the model has both the document context and
+  // the full history.
+  const transcript = messages
+    .map((m) => `${m.role === 'user' ? 'User' : 'Assistant'}: ${m.content}`)
+    .join('\n\n')
+
+  const input = `${contextBlock}\n\n---\n${transcript}\n\nAssistant:`
 
   const response = await fetch(endpoint, {
     method: 'POST',
@@ -39,7 +53,7 @@ export async function streamFromOpenAI(options: OpenAIStreamOptions): Promise<vo
     body: JSON.stringify({
       model,
       instructions: SYSTEM_PROMPT,
-      input: prompt,
+      input,
       stream: true,
     }),
     signal,
@@ -59,7 +73,6 @@ export async function streamFromOpenAI(options: OpenAIStreamOptions): Promise<vo
     if (done) break
     buffer += decoder.decode(value, { stream: true })
 
-    // SSE event boundary is a blank line (`\n\n`).
     let boundary: number
     while ((boundary = buffer.indexOf('\n\n')) !== -1) {
       const block = buffer.slice(0, boundary)

@@ -1,6 +1,9 @@
 // This file is generated from update-loader.ts
 
 export const loaders = {
+  'ai-chat': () => import('./examples/ai-chat').then((m) => m.registerLitEditor()),
+  'ai-check': () => import('./examples/ai-check').then((m) => m.registerLitEditor()),
+  'ai-create': () => import('./examples/ai-create').then((m) => m.registerLitEditor()),
   'block-handle': () => import('./examples/block-handle').then((m) => m.registerLitEditor()),
   'code-block': () => import('./examples/code-block').then((m) => m.registerLitEditor()),
   'inline-menu': () => import('./examples/inline-menu').then((m) => m.registerLitEditor()),

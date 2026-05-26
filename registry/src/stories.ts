@@ -1,6 +1,18 @@
 /// keep-sorted { "keys": ["name"] }
 const stories: ReadonlyArray<{ name: string; description: string; hidden?: boolean }> = [
   {
+    name: 'ai-chat',
+    description: 'A side panel that chats with the document; copy or insert each AI reply into the editor.',
+  },
+  {
+    name: 'ai-check',
+    description: 'Scan the whole document with AI and review suggestions as an inline diff with per-suggestion accept or reject.',
+  },
+  {
+    name: 'ai-create',
+    description: 'Generate rewrites of a selection in a popover with Replace / Add below / Cancel / Try again.',
+  },
+  {
     name: 'block-handle',
     description: 'A handle that appears on hover, allowing you to drag and re-order blocks.',
   },

@@ -39,6 +39,10 @@ const sidebar: Sidebar = [
     items: [{ autogenerate: { directory: 'frameworks' } }],
   },
   {
+    label: 'AI',
+    items: [{ autogenerate: { directory: 'ai' } }],
+  },
+  {
     label: 'Components',
     items: [{ autogenerate: { directory: 'components', collapsed: true } }],
   },

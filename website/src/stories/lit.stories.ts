@@ -3,6 +3,9 @@ import component from './lit.astro'
 
 export default { component }
 
+export const AiChat = { args: { story: 'ai-chat' } }
+export const AiCheck = { args: { story: 'ai-check' } }
+export const AiCreate = { args: { story: 'ai-create' } }
 export const BlockHandle = { args: { story: 'block-handle' } }
 export const CodeBlock = { args: { story: 'code-block' } }
 export const InlineMenu = { args: { story: 'inline-menu' } }

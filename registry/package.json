@@ -14,6 +14,9 @@
   },
   "exports": {
     "./examples.gen.json": "./src/examples.gen.json",
+    "./lit/examples/ai-chat": "./src/lit/examples/ai-chat/index.ts",
+    "./lit/examples/ai-check": "./src/lit/examples/ai-check/index.ts",
+    "./lit/examples/ai-create": "./src/lit/examples/ai-create/index.ts",
     "./lit/examples/block-handle": "./src/lit/examples/block-handle/index.ts",
     "./lit/examples/code-block": "./src/lit/examples/code-block/index.ts",
     "./lit/examples/inline-menu": "./src/lit/examples/inline-menu/index.ts",
@@ -322,6 +325,7 @@
   },
   "devDependencies": {
     "@egoist/tailwindcss-icons": "^1.9.2",
+    "@floating-ui/dom": "^1.7.6",
     "@lit/context": "^1.1.6",
     "@manypkg/find-root": "^3.1.0",
     "@ocavue/utils": "^1.6.0",

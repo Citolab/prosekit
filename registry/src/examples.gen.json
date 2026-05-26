@@ -589,6 +589,27 @@
       ],
       "hidden": false,
       "description": "Real-time collaboration using Yjs CRDT library."
+    },
+    "ai-chat": {
+      "frameworks": [
+        "lit"
+      ],
+      "hidden": false,
+      "description": "A side panel that chats with the document; copy or insert each AI reply into the editor."
+    },
+    "ai-check": {
+      "frameworks": [
+        "lit"
+      ],
+      "hidden": false,
+      "description": "Scan the whole document with AI and review suggestions as an inline diff with per-suggestion accept or reject."
+    },
+    "ai-create": {
+      "frameworks": [
+        "lit"
+      ],
+      "hidden": false,
+      "description": "Generate rewrites of a selection in a popover with Replace / Add below / Cancel / Try again."
     }
   },
   "examples": {
@@ -1118,9 +1139,7 @@
         "registry/src/react/examples/stream-content/index.ts",
         "registry/src/react/examples/stream-content/openai.ts",
         "registry/src/react/examples/stream-content/stream-content.css",
-        "registry/src/react/examples/stream-content/toolbar.tsx",
-        "registry/src/react/ui/code-block-view/code-block-view.tsx",
-        "registry/src/react/ui/code-block-view/index.ts"
+        "registry/src/react/examples/stream-content/toolbar.tsx"
       ]
     },
     "react-example-strike": {
@@ -2624,6 +2643,51 @@
         "registry/src/vue/ui/image-upload-popover/index.ts",
         "registry/src/vue/ui/toolbar/index.ts",
         "registry/src/vue/ui/toolbar/toolbar.vue"
+      ]
+    },
+    "lit-example-ai-chat": {
+      "story": "ai-chat",
+      "files": [
+        "registry/src/lit/examples/ai-chat/ai-chat.css",
+        "registry/src/lit/examples/ai-chat/chat-sidebar.ts",
+        "registry/src/lit/examples/ai-chat/chat-toolbar.ts",
+        "registry/src/lit/examples/ai-chat/editor.ts",
+        "registry/src/lit/examples/ai-chat/extension.ts",
+        "registry/src/lit/examples/ai-chat/index.ts",
+        "registry/src/lit/examples/ai-chat/openai.ts",
+        "registry/src/lit/sample/sample-doc-ai-chat.ts",
+        "registry/src/lit/ui/editor-context.ts"
+      ]
+    },
+    "lit-example-ai-check": {
+      "story": "ai-check",
+      "files": [
+        "registry/src/lit/examples/ai-check/accept-toolbar.ts",
+        "registry/src/lit/examples/ai-check/ai-check.css",
+        "registry/src/lit/examples/ai-check/editor.ts",
+        "registry/src/lit/examples/ai-check/extension.ts",
+        "registry/src/lit/examples/ai-check/fragment-popover.ts",
+        "registry/src/lit/examples/ai-check/index.ts",
+        "registry/src/lit/examples/ai-check/openai.ts",
+        "registry/src/lit/examples/ai-check/prompts.ts",
+        "registry/src/lit/examples/ai-check/robot-toolbar.ts",
+        "registry/src/lit/sample/sample-doc-ai-check.ts",
+        "registry/src/lit/ui/editor-context.ts"
+      ]
+    },
+    "lit-example-ai-create": {
+      "story": "ai-create",
+      "files": [
+        "registry/src/lit/examples/ai-create/ai-create.css",
+        "registry/src/lit/examples/ai-create/create-popover.ts",
+        "registry/src/lit/examples/ai-create/editor.ts",
+        "registry/src/lit/examples/ai-create/extension.ts",
+        "registry/src/lit/examples/ai-create/index.ts",
+        "registry/src/lit/examples/ai-create/openai.ts",
+        "registry/src/lit/examples/ai-create/prompts.ts",
+        "registry/src/lit/examples/ai-create/wand-toolbar.ts",
+        "registry/src/lit/sample/sample-doc-ai-create.ts",
+        "registry/src/lit/ui/editor-context.ts"
       ]
     },
     "lit-example-block-handle": {
