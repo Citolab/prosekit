@@ -1,7 +1,7 @@
 {
   "name": "@prosekit/extensions",
   "type": "module",
-  "version": "0.17.1",
+  "version": "0.17.3",
   "private": false,
   "description": "A collection of common extensions for ProseKit",
   "author": {
@@ -132,8 +132,7 @@
     "@prosekit/config-tsdown": "workspace:*",
     "@prosekit/config-vitest": "workspace:*",
     "diffable-html-snapshot": "^0.2.0",
-    "just-pick": "^4.2.0",
-    "katex": "^0.16.46",
+    "katex": "^0.16.47",
     "loro-crdt": "^1.12.1",
     "loro-prosemirror": "^0.4.3",
     "rehype-parse": "^9.0.1",

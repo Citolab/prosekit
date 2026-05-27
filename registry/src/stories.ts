@@ -34,7 +34,7 @@ const stories: ReadonlyArray<{ name: string; description: string; hidden?: boole
   },
   {
     name: 'code-block',
-    description: 'Example for code block node with syntax highlighting.',
+    description: 'Code block with syntax highlighting and a Mermaid diagram preview.',
   },
   {
     name: 'code',

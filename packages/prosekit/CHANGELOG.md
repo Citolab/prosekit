@@ -1,5 +1,21 @@
 # prosekit
 
+## 0.21.3
+
+### Patch Changes
+
+- [`097bc7b`](https://github.com/ocavue/prosekit/commit/097bc7b918232a7559a7619a92e58be3df06494e) ![](https://prosekit.dev/b/extensions)
+
+  Add `defineCodeBlockPreviewPlugin()` and `isCodeBlockPreviewHiddenDecoration()` to `prosekit/extensions/code-block`. A node view for `codeBlock` can use them to swap between an editable source view and a rendered view based on whether the cursor is inside.
+
+## 0.21.2
+
+### Patch Changes
+
+- [`6fda244`](https://github.com/ocavue/prosekit/commit/6fda244b9e9fb2aa0a75a244e0b3bc2bdb734a35) ![](https://prosekit.dev/b/extensions)
+
+  Add font-family extension.
+
 ## 0.21.1
 
 ### Patch Changes

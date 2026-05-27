@@ -117,13 +117,21 @@ export const CSS_AUTOCOMPLETE_MENU_KEYBOARD = cn(
 )
 
 export const CSS_LANGUAGE_WRAPPER = cn(
-  'relative mx-2 top-3 h-0 select-none overflow-visible text-xs',
+  'relative mx-2 top-3 h-0 select-none overflow-visible text-xs data-preview:hidden',
 )
 
 export const CSS_LANGUAGE_SELECT = cn(
   'outline-unset focus:outline-unset relative box-border w-auto cursor-pointer select-none appearance-none rounded-sm border-none bg-transparent px-2 py-1 text-xs transition text-(--prosemirror-highlight)',
   // Only visible when hovering the code block
   'opacity-0 hover:opacity-80 [div[data-node-view-root]:hover_&]:opacity-50 hover:[div[data-node-view-root]:hover_&]:opacity-80',
+)
+
+export const CSS_CODE_BLOCK_PREVIEW_SOURCE = cn(
+  'data-preview:hidden',
+)
+
+export const CSS_CODE_BLOCK_PREVIEW_DISPLAY = cn(
+  'block py-2 overflow-auto',
 )
 
 const CSS_TOP_BAR = cn(

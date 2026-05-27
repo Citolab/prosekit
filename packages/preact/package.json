@@ -1,7 +1,7 @@
 {
   "name": "@prosekit/preact",
   "type": "module",
-  "version": "0.7.3",
+  "version": "0.7.5",
   "private": false,
   "description": "Preact components and utilities for ProseKit",
   "author": {
@@ -65,7 +65,7 @@
     "@prosekit/config-tsdown": "workspace:*",
     "@prosekit/config-vitest": "workspace:*",
     "@prosekit/testing": "workspace:*",
-    "preact": "^10.29.1",
+    "preact": "^10.29.2",
     "tsdown": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:",
