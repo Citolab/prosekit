@@ -9,7 +9,7 @@ export const loaders = {
   'inline-menu': () => import('./examples/inline-menu/index.ts').then((m) => m.registerLitEditor()),
   'minimal': () => import('./examples/minimal/index.ts').then((m) => m.registerLitEditor()),
   'slash-menu': () => import('./examples/slash-menu/index.ts').then((m) => m.registerLitEditor()),
-  'stream-content': () => import('./examples/stream-content/index.ts').then((m) => m.registerLitEditor()),
+  'ai-stream-content': () => import('./examples/ai-stream-content/index.ts').then((m) => m.registerLitEditor()),
   'table': () => import('./examples/table/index.ts').then((m) => m.registerLitEditor()),
   'toolbar': () => import('./examples/toolbar/index.ts').then((m) => m.registerLitEditor()),
 }

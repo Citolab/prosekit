@@ -7,7 +7,7 @@ import { useMemo } from 'react'
 
 import { defineExtension } from './extension'
 import Toolbar from './toolbar'
-import './stream-content.css'
+import './ai-stream-content.css'
 
 export default function Editor() {
   const editor = useMemo(() => {

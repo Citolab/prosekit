@@ -418,7 +418,7 @@
       "hidden": false,
       "description": "Command menu triggered by typing slash (/)."
     },
-    "stream-content": {
+    "ai-stream-content": {
       "frameworks": [
         "react",
         "lit"
@@ -1131,15 +1131,15 @@
         "registry/src/react/ui/slash-menu/slash-menu.tsx"
       ]
     },
-    "react-example-stream-content": {
-      "story": "stream-content",
+    "react-example-ai-stream-content": {
+      "story": "ai-stream-content",
       "files": [
-        "registry/src/react/examples/stream-content/editor.tsx",
-        "registry/src/react/examples/stream-content/extension.ts",
-        "registry/src/react/examples/stream-content/index.ts",
-        "registry/src/react/examples/stream-content/openai.ts",
-        "registry/src/react/examples/stream-content/stream-content.css",
-        "registry/src/react/examples/stream-content/toolbar.tsx"
+        "registry/src/react/examples/ai-stream-content/editor.tsx",
+        "registry/src/react/examples/ai-stream-content/extension.ts",
+        "registry/src/react/examples/ai-stream-content/index.ts",
+        "registry/src/react/examples/ai-stream-content/llm.ts",
+        "registry/src/react/examples/ai-stream-content/ai-stream-content.css",
+        "registry/src/react/examples/ai-stream-content/toolbar.tsx"
       ]
     },
     "react-example-strike": {
@@ -2759,15 +2759,15 @@
         "registry/src/lit/ui/slash-menu/slash-menu.ts"
       ]
     },
-    "lit-example-stream-content": {
-      "story": "stream-content",
+    "lit-example-ai-stream-content": {
+      "story": "ai-stream-content",
       "files": [
-        "registry/src/lit/examples/stream-content/editor.ts",
-        "registry/src/lit/examples/stream-content/extension.ts",
-        "registry/src/lit/examples/stream-content/index.ts",
-        "registry/src/lit/examples/stream-content/openai.ts",
-        "registry/src/lit/examples/stream-content/stream-content.css",
-        "registry/src/lit/examples/stream-content/toolbar.ts",
+        "registry/src/lit/examples/ai-stream-content/editor.ts",
+        "registry/src/lit/examples/ai-stream-content/extension.ts",
+        "registry/src/lit/examples/ai-stream-content/index.ts",
+        "registry/src/lit/examples/ai-stream-content/llm.ts",
+        "registry/src/lit/examples/ai-stream-content/ai-stream-content.css",
+        "registry/src/lit/examples/ai-stream-content/toolbar.ts",
         "registry/src/lit/ui/editor-context.ts"
       ]
     },

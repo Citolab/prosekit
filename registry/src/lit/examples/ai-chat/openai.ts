@@ -21,10 +21,8 @@ export interface OpenAIChatStreamOptions {
   signal?: AbortSignal
 }
 
-interface ResponsesStreamEvent {
-  type?: string
-  delta?: string
-  response?: { error?: { message?: string } }
+interface ChatCompletionChunk {
+  choices?: Array<{ delta?: { content?: string }; finish_reason?: string | null }>
   error?: { message?: string }
 }
 
@@ -35,14 +33,7 @@ export async function streamChatFromOpenAI(options: OpenAIChatStreamOptions): Pr
     = `<document>\n${documentHtml}\n</document>`
     + (selectionHtml ? `\n\n<selection>\n${selectionHtml}\n</selection>` : '')
 
-  // The Responses API takes a single `input` string. Render the conversation
-  // as a simple transcript so the model has both the document context and
-  // the full history.
-  const transcript = messages
-    .map((m) => `${m.role === 'user' ? 'User' : 'Assistant'}: ${m.content}`)
-    .join('\n\n')
-
-  const input = `${contextBlock}\n\n---\n${transcript}\n\nAssistant:`
+  const systemContent = `${SYSTEM_PROMPT}\n\n${contextBlock}`
 
   const response = await fetch(endpoint, {
     method: 'POST',
@@ -52,8 +43,10 @@ export async function streamChatFromOpenAI(options: OpenAIChatStreamOptions): Pr
     },
     body: JSON.stringify({
       model,
-      instructions: SYSTEM_PROMPT,
-      input,
+      messages: [
+        { role: 'system', content: systemContent },
+        ...messages,
+      ],
       stream: true,
     }),
     signal,
@@ -87,17 +80,18 @@ function handleEvent(block: string, write: (chunk: string) => void): void {
     if (!line.startsWith('data:')) continue
     const payload = line.slice('data:'.length).trim()
     if (!payload || payload === '[DONE]') continue
-    let event: ResponsesStreamEvent
+    let chunk: ChatCompletionChunk
     try {
-      event = JSON.parse(payload) as ResponsesStreamEvent
+      chunk = JSON.parse(payload) as ChatCompletionChunk
     } catch {
       continue
     }
-    if (event.type === 'response.output_text.delta' && typeof event.delta === 'string') {
-      write(event.delta)
-    } else if (event.type === 'response.failed' || event.type === 'error') {
-      const message = event.response?.error?.message ?? event.error?.message ?? 'AI response failed'
-      throw new Error(message)
+    if (chunk.error?.message) {
+      throw new Error(chunk.error.message)
+    }
+    const content = chunk.choices?.[0]?.delta?.content
+    if (typeof content === 'string') {
+      write(content)
     }
   }
 }

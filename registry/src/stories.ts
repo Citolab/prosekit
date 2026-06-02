@@ -166,7 +166,7 @@ const stories: ReadonlyArray<{ name: string; description: string; hidden?: boole
     description: 'Command menu triggered by typing slash (/).',
   },
   {
-    name: 'stream-content',
+    name: 'ai-stream-content',
     description: 'Stream AI-generated content into the editor with live decorations.',
   },
   {

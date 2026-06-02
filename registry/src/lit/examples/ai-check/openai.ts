@@ -14,19 +14,11 @@ export interface OpenAIStreamOptions {
   signal?: AbortSignal
 }
 
-interface ResponsesStreamEvent {
-  type?: string
-  delta?: string
-  response?: { error?: { message?: string } }
+interface ChatCompletionChunk {
+  choices?: Array<{ delta?: { content?: string }; finish_reason?: string | null }>
   error?: { message?: string }
 }
 
-/**
- * Call the Azure Foundry Responses streaming endpoint and forward each
- * text delta to `write`. Server-Sent Events arrive as `event: <type>` +
- * `data: <json>` pairs separated by blank lines. We only forward
- * `response.output_text.delta` events.
- */
 export async function streamFromOpenAI(options: OpenAIStreamOptions): Promise<void> {
   const { endpoint, apiKey, model, prompt, write, signal } = options
 
@@ -38,8 +30,10 @@ export async function streamFromOpenAI(options: OpenAIStreamOptions): Promise<vo
     },
     body: JSON.stringify({
       model,
-      instructions: SYSTEM_PROMPT,
-      input: prompt,
+      messages: [
+        { role: 'system', content: SYSTEM_PROMPT },
+        { role: 'user', content: prompt },
+      ],
       stream: true,
     }),
     signal,
@@ -73,17 +67,18 @@ function handleEvent(block: string, write: (chunk: string) => void): void {
     if (!line.startsWith('data:')) continue
     const payload = line.slice('data:'.length).trim()
     if (!payload || payload === '[DONE]') continue
-    let event: ResponsesStreamEvent
+    let chunk: ChatCompletionChunk
     try {
-      event = JSON.parse(payload) as ResponsesStreamEvent
+      chunk = JSON.parse(payload) as ChatCompletionChunk
     } catch {
       continue
     }
-    if (event.type === 'response.output_text.delta' && typeof event.delta === 'string') {
-      write(event.delta)
-    } else if (event.type === 'response.failed' || event.type === 'error') {
-      const message = event.response?.error?.message ?? event.error?.message ?? 'AI response failed'
-      throw new Error(message)
+    if (chunk.error?.message) {
+      throw new Error(chunk.error.message)
+    }
+    const content = chunk.choices?.[0]?.delta?.content
+    if (typeof content === 'string') {
+      write(content)
     }
   }
 }

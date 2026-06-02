@@ -1,7 +1,7 @@
 import 'prosekit/basic/style.css'
 import 'prosekit/basic/typography.css'
 
-import './stream-content.css'
+import './ai-stream-content.css'
 
 import { ContextProvider } from '@lit/context'
 import { html, LitElement, type PropertyDeclaration, type PropertyValues } from 'lit'
@@ -12,7 +12,7 @@ import { createEditor } from 'prosekit/core'
 import { editorContext } from '../../ui/editor-context'
 
 import { defineExtension } from './extension'
-import { registerLitStreamContentToolbar } from './toolbar'
+import { registerLitAiStreamContentToolbar } from './toolbar'
 
 export class LitEditor extends LitElement {
   static override properties = {
@@ -52,7 +52,7 @@ export class LitEditor extends LitElement {
 
   override render() {
     return html`<div class="CSS_EDITOR_VIEWPORT">
-      <lit-stream-content-toolbar></lit-stream-content-toolbar>
+      <lit-ai-stream-content-toolbar></lit-ai-stream-content-toolbar>
       <div class="CSS_EDITOR_SCROLLING">
         <div ${ref(this.ref)} class="CSS_EDITOR_CONTENT"></div>
       </div>
@@ -61,14 +61,14 @@ export class LitEditor extends LitElement {
 }
 
 export function registerLitEditor(): void {
-  registerLitStreamContentToolbar()
+  registerLitAiStreamContentToolbar()
 
-  if (customElements.get('lit-editor-example-stream-content')) return
-  customElements.define('lit-editor-example-stream-content', LitEditor)
+  if (customElements.get('lit-editor-example-ai-stream-content')) return
+  customElements.define('lit-editor-example-ai-stream-content', LitEditor)
 }
 
 declare global {
   interface HTMLElementTagNameMap {
-    'lit-editor-example-stream-content': LitEditor
+    'lit-editor-example-ai-stream-content': LitEditor
   }
 }

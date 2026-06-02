@@ -48,7 +48,7 @@ The same patterns rendered as forkable demos:
 - [`ai-create`](/examples/ai-create) — popover-driven rewrite of a selection (Replace / Add below / Cancel / Try again).
 - [`ai-check`](/examples/ai-check) — whole-document review with per-fragment accept/reject, built on `defineAiDiff`.
 - [`ai-chat`](/examples/ai-chat) — companion chat sidebar that operates on the current selection (or the whole document if nothing is selected).
-- [`stream-content`](/examples/stream-content) — minimal demo of `streamContent` with an endpoint + API-key form.
+- [`ai-stream-content`](/examples/ai-stream-content) — minimal demo of `streamContent` with an endpoint + API-key form.
 
 Each example is a shadcn-style starting point. Fork the folder, replace the model call, restyle.
 

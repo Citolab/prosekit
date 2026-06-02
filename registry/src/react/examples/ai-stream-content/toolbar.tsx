@@ -11,7 +11,7 @@ import {
 } from 'react'
 
 import type { EditorExtension } from './extension'
-import { streamFromOpenAI } from './openai'
+import { streamFromOpenAI } from './llm'
 
 const API_KEY_STORAGE_KEY = 'prosekit-stream-content-api-key'
 const MODEL_STORAGE_KEY = 'prosekit-stream-content-model'

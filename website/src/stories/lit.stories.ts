@@ -11,6 +11,6 @@ export const CodeBlock = { args: { story: 'code-block' } }
 export const InlineMenu = { args: { story: 'inline-menu' } }
 export const Minimal = { args: { story: 'minimal' } }
 export const SlashMenu = { args: { story: 'slash-menu' } }
-export const StreamContent = { args: { story: 'stream-content' } }
+export const AiStreamContent = { args: { story: 'ai-stream-content' } }
 export const Table = { args: { story: 'table' } }
 export const Toolbar = { args: { story: 'toolbar' } }

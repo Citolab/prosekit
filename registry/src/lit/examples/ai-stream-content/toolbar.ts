@@ -28,7 +28,7 @@ function writeStorage(key: string, value: string): void {
   }
 }
 
-export class LitStreamContentToolbar extends LitElement {
+export class LitAiStreamContentToolbar extends LitElement {
   static override properties = {
     apiKey: { state: true },
     model: { state: true },
@@ -91,7 +91,7 @@ export class LitStreamContentToolbar extends LitElement {
 
     const { from, to } = editor.view.state.selection
     try {
-      const { streamFromOpenAI } = await import('./openai')
+      const { streamFromOpenAI } = await import('./llm')
       await streamContent(editor.view, {
         from,
         to,
@@ -191,13 +191,13 @@ export class LitStreamContentToolbar extends LitElement {
   }
 }
 
-export function registerLitStreamContentToolbar(): void {
-  if (customElements.get('lit-stream-content-toolbar')) return
-  customElements.define('lit-stream-content-toolbar', LitStreamContentToolbar)
+export function registerLitAiStreamContentToolbar(): void {
+  if (customElements.get('lit-ai-stream-content-toolbar')) return
+  customElements.define('lit-ai-stream-content-toolbar', LitAiStreamContentToolbar)
 }
 
 declare global {
   interface HTMLElementTagNameMap {
-    'lit-stream-content-toolbar': LitStreamContentToolbar
+    'lit-ai-stream-content-toolbar': LitAiStreamContentToolbar
   }
 }
