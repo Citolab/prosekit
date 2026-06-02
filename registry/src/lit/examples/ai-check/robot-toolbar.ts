@@ -199,7 +199,7 @@ class LitAiCheckToolbar extends LitElement {
           @click=${this.toggleMenu}
           ?disabled=${this.running}
           title="AI Check — scan the whole document"
-          class="p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50"
+          class="CSS_TOGGLE_BUTTON"
         >
           <div class="CSS_ICON_ROBOT"></div>
         </button>

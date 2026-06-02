@@ -279,7 +279,7 @@ class LitAiCreateResult extends LitElement {
                   type="button"
                   @click=${this.addBelow}
                   ?disabled=${s.streaming || !s.html}
-                  class="px-3 py-1 rounded text-sm bg-gray-700 text-white hover:bg-gray-800 disabled:opacity-50"
+                  class="px-3 py-1 rounded text-sm bg-gray-900 dark:bg-gray-50 text-white dark:text-gray-900 hover:bg-gray-900/90 dark:hover:bg-gray-50/90 disabled:opacity-50"
                 >
                   Add below
                 </button>

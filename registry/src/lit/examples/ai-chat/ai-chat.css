@@ -11,6 +11,10 @@
   z-index: 10;
 }
 
+.dark .ai-chat-sidebar {
+  border-left-color: rgb(55 65 81);
+}
+
 .ai-chat-thread {
   flex: 1 1 auto;
   overflow-y: auto;

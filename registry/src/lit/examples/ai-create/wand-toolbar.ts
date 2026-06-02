@@ -159,7 +159,7 @@ class LitAiCreateToolbar extends LitElement {
           type="button"
           @click=${this.toggleMenu}
           title="AI Create — rewrite the selection (or the block at the cursor)"
-          class="p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-800"
+          class="CSS_TOGGLE_BUTTON"
         >
           <div class="CSS_ICON_WAND"></div>
         </button>
