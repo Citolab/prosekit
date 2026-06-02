@@ -19,6 +19,7 @@
     "./lit/examples/ai-create": "./src/lit/examples/ai-create/index.ts",
     "./lit/examples/block-handle": "./src/lit/examples/block-handle/index.ts",
     "./lit/examples/code-block": "./src/lit/examples/code-block/index.ts",
+    "./lit/examples/full": "./src/lit/examples/full/index.ts",
     "./lit/examples/inline-menu": "./src/lit/examples/inline-menu/index.ts",
     "./lit/examples/minimal": "./src/lit/examples/minimal/index.ts",
     "./lit/examples/slash-menu": "./src/lit/examples/slash-menu/index.ts",

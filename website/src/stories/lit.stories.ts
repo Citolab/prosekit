@@ -8,6 +8,7 @@ export const AiCheck = { args: { story: 'ai-check' } }
 export const AiCreate = { args: { story: 'ai-create' } }
 export const BlockHandle = { args: { story: 'block-handle' } }
 export const CodeBlock = { args: { story: 'code-block' } }
+export const Full = { args: { story: 'full' } }
 export const InlineMenu = { args: { story: 'inline-menu' } }
 export const Minimal = { args: { story: 'minimal' } }
 export const SlashMenu = { args: { story: 'slash-menu' } }
