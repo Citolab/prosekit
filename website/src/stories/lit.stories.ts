@@ -3,6 +3,7 @@ import component from './lit.astro'
 
 export default { component }
 
+export const AiCreate = { args: { story: 'ai-create' } }
 export const AiStreamContent = { args: { story: 'ai-stream-content' } }
 export const BlockHandle = { args: { story: 'block-handle' } }
 export const CodeBlock = { args: { story: 'code-block' } }

@@ -590,6 +590,13 @@
       ],
       "hidden": false,
       "description": "Real-time collaboration using Yjs CRDT library."
+    },
+    "ai-create": {
+      "frameworks": [
+        "lit"
+      ],
+      "hidden": false,
+      "description": "Generate rewrites of a selection in a popover with Replace / Add below / Cancel / Try again."
     }
   },
   "examples": {
@@ -2623,6 +2630,21 @@
         "registry/src/vue/ui/image-upload-popover/index.ts",
         "registry/src/vue/ui/toolbar/index.ts",
         "registry/src/vue/ui/toolbar/toolbar.vue"
+      ]
+    },
+    "lit-example-ai-create": {
+      "story": "ai-create",
+      "files": [
+        "registry/src/lit/examples/ai-create/ai-create.css",
+        "registry/src/lit/examples/ai-create/create-popover.ts",
+        "registry/src/lit/examples/ai-create/editor.ts",
+        "registry/src/lit/examples/ai-create/extension.ts",
+        "registry/src/lit/examples/ai-create/index.ts",
+        "registry/src/lit/examples/ai-create/openai.ts",
+        "registry/src/lit/examples/ai-create/prompts.ts",
+        "registry/src/lit/examples/ai-create/wand-toolbar.ts",
+        "registry/src/lit/sample/sample-doc-ai-create.ts",
+        "registry/src/lit/ui/editor-context.ts"
       ]
     },
     "lit-example-ai-stream-content": {
