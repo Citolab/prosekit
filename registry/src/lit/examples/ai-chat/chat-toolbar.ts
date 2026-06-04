@@ -20,13 +20,13 @@ class LitAiChatToolbar extends LitElement {
   override render() {
     return html`
       <div
-        class="flex items-center justify-end p-2 border-b border-gray-200 dark:border-gray-800"
+        class="flex items-center justify-end p-4 gap-3 border-b border-gray-200 dark:border-gray-800"
         data-testid="ai-chat-toolbar"
       >
         <button
           type="button"
           @click=${this.toggle}
-          class="px-2 py-1 rounded border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800"
+          class="px-3 py-2 rounded border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800"
         >
           ${this.open ? 'Close chat' : 'Chat'}
         </button>

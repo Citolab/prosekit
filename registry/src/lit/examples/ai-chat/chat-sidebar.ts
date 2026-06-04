@@ -11,7 +11,7 @@ import { Selection as PmSelection } from 'prosekit/pm/state'
 
 import { editorContext } from '../../ui/editor-context'
 
-import type { ChatMessage } from './openai'
+import type { ChatMessage } from './openai.ts'
 
 const API_KEY_STORAGE_KEY = 'prosekit-stream-content-api-key'
 const MODEL_STORAGE_KEY = 'prosekit-stream-content-model'
@@ -113,6 +113,10 @@ class LitAiChatSidebar extends LitElement {
     }
   }
 
+  private updateMessage(id: number, patch: Partial<UiMessage>) {
+    this.messages = this.messages.map((m) => (m.id === id ? { ...m, ...patch } : m))
+  }
+
   private async submit() {
     const editor = this.getEditor()
     if (!editor || !this.draft.trim() || this.streaming) return
@@ -130,63 +134,41 @@ class LitAiChatSidebar extends LitElement {
     const documentHtml = serializeDocToHtml(editor)
     const scope: 'selection' | 'document' = selectionHtml ? 'selection' : 'document'
 
-    const userMessage: UiMessage = {
-      id: this.nextId++,
-      role: 'user',
-      content: this.draft.trim(),
-      scope,
-    }
-    const assistantMessage: UiMessage = {
-      id: this.nextId++,
-      role: 'assistant',
-      content: '',
-      scope,
-      streaming: true,
-    }
+    const userMessage: UiMessage = { id: this.nextId++, role: 'user', content: this.draft.trim(), scope }
+    const assistantMessage: UiMessage = { id: this.nextId++, role: 'assistant', content: '', scope, streaming: true }
+    const assistantId = assistantMessage.id
     this.messages = [...this.messages, userMessage, assistantMessage]
     this.draft = ''
     this.streaming = true
 
     const controller = new AbortController()
     this.currentController = controller
-    const model = readStorage(MODEL_STORAGE_KEY, DEFAULT_MODEL) || DEFAULT_MODEL
+    let assistantContent = ''
 
     try {
       const { streamChatFromOpenAI } = await import('./openai')
-      const history: ChatMessage[] = this.messages
-        .filter((m) => m.id !== assistantMessage.id)
-        .map((m) => ({ role: m.role, content: m.content }))
       await streamChatFromOpenAI({
         endpoint,
         apiKey,
-        model,
-        messages: history,
+        model: readStorage(MODEL_STORAGE_KEY, DEFAULT_MODEL) || DEFAULT_MODEL,
+        messages: this.messages.slice(0, -1).map((m) => ({ role: m.role, content: m.content })),
         documentHtml,
         selectionHtml,
         write: (chunk) => {
-          this.messages = this.messages.map((m) =>
-            m.id === assistantMessage.id
-              ? { ...m, content: m.content + chunk }
-              : m,
-          )
+          assistantContent += chunk
+          this.updateMessage(assistantId, { content: assistantContent })
         },
         signal: controller.signal,
       })
     } catch (error) {
       if ((error as { name?: string })?.name !== 'AbortError') {
         console.error('AI chat failed:', error)
-        this.messages = this.messages.map((m) =>
-          m.id === assistantMessage.id
-            ? { ...m, content: m.content || 'Failed to get a response.' }
-            : m,
-        )
+        this.updateMessage(assistantId, { content: assistantContent || 'Failed to get a response.' })
       }
     } finally {
       if (this.currentController === controller) {
         this.streaming = false
-        this.messages = this.messages.map((m) =>
-          m.id === assistantMessage.id ? { ...m, streaming: false } : m,
-        )
+        this.updateMessage(assistantId, { streaming: false })
         this.currentController = undefined
       }
     }
@@ -305,7 +287,7 @@ class LitAiChatSidebar extends LitElement {
             <button
               type="submit"
               ?disabled=${this.streaming || !this.draft.trim()}
-              class="px-3 py-1 rounded bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-40"
+              class="px-3 py-1 rounded bg-black text-white hover:bg-gray-800 disabled:opacity-40"
             >
               Send
             </button>
