@@ -30,6 +30,7 @@
   "module": "./src/index.ts",
   "exports": {
     ".": "./src/index.ts",
+    "./ai": "./src/ai.gen.ts",
     "./basic": "./src/basic.gen.ts",
     "./basic/style.css": "./src/basic/style.css",
     "./basic/typography.css": "./src/basic/typography.css",
@@ -181,6 +182,7 @@
     "build:typedoc": "typedoc"
   },
   "dependencies": {
+    "@prosekit/ai": "workspace:*",
     "@prosekit/basic": "workspace:*",
     "@prosekit/core": "workspace:*",
     "@prosekit/extensions": "workspace:*",
@@ -196,20 +198,26 @@
   "peerDependencies": {
     "loro-crdt": ">= 1.10.0",
     "loro-prosemirror": ">= 0.4.1",
+    "y-prosemirror": ">= 1.2.9",
+    "yjs": ">= 13.6.18",
     "preact": ">= 10.11.0",
     "react": ">= 18.2.0",
     "react-dom": ">= 18.2.0",
     "solid-js": ">= 1.7.0",
     "svelte": ">= 5.0.0",
-    "vue": ">= 3.0.0",
-    "y-prosemirror": ">= 1.2.9",
-    "yjs": ">= 13.6.18"
+    "vue": ">= 3.0.0"
   },
   "peerDependenciesMeta": {
     "loro-crdt": {
       "optional": true
     },
     "loro-prosemirror": {
+      "optional": true
+    },
+    "y-prosemirror": {
+      "optional": true
+    },
+    "yjs": {
       "optional": true
     },
     "preact": {
@@ -229,26 +237,20 @@
     },
     "vue": {
       "optional": true
-    },
-    "y-prosemirror": {
-      "optional": true
-    },
-    "yjs": {
-      "optional": true
     }
   },
   "devDependencies": {
     "@prosekit/config-tsdown": "workspace:*",
     "@prosekit/typedoc-plugin": "workspace:*",
-    "@types/react": "^19.2.16",
+    "@types/react": "^19.2.15",
     "@types/react-dom": "^19.2.3",
     "loro-crdt": "^1.12.3",
     "loro-prosemirror": "^0.4.3",
     "preact": "^10.29.2",
-    "react": "^19.2.7",
-    "react-dom": "^19.2.7",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
     "solid-js": "^1.9.13",
-    "svelte": "^5.56.1",
+    "svelte": "^5.55.7",
     "tsdown": "catalog:",
     "typedoc": "^0.28.19",
     "typedoc-plugin-external-package-links": "^0.2.0",
@@ -257,15 +259,19 @@
     "typedoc-plugin-md": "^0.7.1",
     "typedoc-plugin-mdn-links": "^5.1.1",
     "typescript": "catalog:",
-    "vue": "^3.5.35",
+    "vue": "^3.5.34",
     "y-prosemirror": "^1.3.7",
-    "yjs": "^13.6.31"
+    "yjs": "^13.6.30"
   },
   "publishConfig": {
     "exports": {
       ".": {
         "types": "./dist/index.d.ts",
         "default": "./dist/index.js"
+      },
+      "./ai": {
+        "types": "./dist/ai.d.ts",
+        "default": "./dist/ai.js"
       },
       "./basic": {
         "types": "./dist/basic.d.ts",
@@ -822,6 +828,9 @@
       "*": {
         ".": [
           "./dist/index.d.ts"
+        ],
+        "ai": [
+          "./dist/ai.d.ts"
         ],
         "basic": [
           "./dist/basic.d.ts"

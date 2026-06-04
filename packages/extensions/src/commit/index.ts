@@ -147,19 +147,30 @@ function decorateDeletion(
   to: number,
   /** The insert position of the decoration in the doc node after the change */
   pos: number,
+  /** Optional extra HTML attributes to set on each rendered element. */
+  extraAttrs?: Readonly<Record<string, string>>,
 ): Decoration[] {
   const slice = doc.slice(from, to)
 
   const renders = decorateDeletionSlice(slice)
   const count = renders.length
 
-  return renders.map((render, index) =>
-    Decoration.widget(pos, render, {
+  return renders.map((render, index) => {
+    const wrappedRender = extraAttrs
+      ? (view: EditorView): HTMLElement => {
+          const el = render(view)
+          for (const [k, v] of Object.entries(extraAttrs)) {
+            el.setAttribute(k, v)
+          }
+          return el
+        }
+      : render
+    return Decoration.widget(pos, wrappedRender, {
       side: -20 - count + index,
       // Ensure the text in the decoration is able to be selected.
       ignoreSelection: true,
     })
-  )
+  })
 }
 
 function decorateAddition(
@@ -298,4 +309,13 @@ function defineCommitRecorder(commitRecorder: CommitRecorder): PlainExtension {
   )
 }
 
-export { CommitRecorder, defineCommitRecorder, defineCommitViewer, type Commit }
+export {
+  CommitRecorder,
+  decorateChange,
+  decorateCommit,
+  decorateDeletion,
+  defineCommitRecorder,
+  defineCommitViewer,
+  getChanges,
+  type Commit,
+}

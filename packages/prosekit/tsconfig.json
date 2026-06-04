@@ -5,6 +5,9 @@
   },
   "references": [
     {
+      "path": "../ai/tsconfig.json",
+    },
+    {
       "path": "../basic/tsconfig.json",
     },
     {
