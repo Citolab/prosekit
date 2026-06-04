@@ -35,7 +35,7 @@ export default function Toolbar() {
   const [apiKey, setApiKey] = useState(() => readStorage(API_KEY_STORAGE_KEY))
   const [model, setModel] = useState(() => readStorage(MODEL_STORAGE_KEY, DEFAULT_MODEL))
   const [endpoint, setEndpoint] = useState(() => readStorage(ENDPOINT_STORAGE_KEY))
-  const [prompt, setPrompt] = useState('Write a short article about prosemirror.')
+  const [prompt, setPrompt] = useState('Write a short article about prosekit.')
   const [streaming, setStreaming] = useState(false)
   const abortRef = useRef<AbortController | null>(null)
 

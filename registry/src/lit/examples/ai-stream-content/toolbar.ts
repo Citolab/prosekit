@@ -39,7 +39,7 @@ export class LitAiStreamContentToolbar extends LitElement {
   private apiKey = ''
   private model = DEFAULT_MODEL
   private endpoint = ''
-  private prompt = 'Write a short article about prosemirror.'
+  private prompt = 'Write a short article about prosekit.'
   private streaming = false
   private abortController: AbortController | null = null
 
