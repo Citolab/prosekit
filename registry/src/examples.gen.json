@@ -590,6 +590,13 @@
       ],
       "hidden": false,
       "description": "Real-time collaboration using Yjs CRDT library."
+    },
+    "ai-chat": {
+      "frameworks": [
+        "lit"
+      ],
+      "hidden": false,
+      "description": "A side panel that chats with the document; copy or insert each AI reply into the editor."
     }
   },
   "examples": {
@@ -2623,6 +2630,20 @@
         "registry/src/vue/ui/image-upload-popover/index.ts",
         "registry/src/vue/ui/toolbar/index.ts",
         "registry/src/vue/ui/toolbar/toolbar.vue"
+      ]
+    },
+    "lit-example-ai-chat": {
+      "story": "ai-chat",
+      "files": [
+        "registry/src/lit/examples/ai-chat/ai-chat.css",
+        "registry/src/lit/examples/ai-chat/chat-sidebar.ts",
+        "registry/src/lit/examples/ai-chat/chat-toolbar.ts",
+        "registry/src/lit/examples/ai-chat/editor.ts",
+        "registry/src/lit/examples/ai-chat/extension.ts",
+        "registry/src/lit/examples/ai-chat/index.ts",
+        "registry/src/lit/examples/ai-chat/openai.ts",
+        "registry/src/lit/sample/sample-doc-ai-chat.ts",
+        "registry/src/lit/ui/editor-context.ts"
       ]
     },
     "lit-example-ai-stream-content": {
