@@ -226,7 +226,7 @@ class LitAiChatSidebar extends LitElement {
     if (m.role === 'user') {
       return html`
         <div>
-          <div class="ai-chat-msg-role">You · ${m.scope}</div>
+          <div>You · ${m.scope}</div>
           <div>${m.content}</div>
         </div>
       `
@@ -234,9 +234,8 @@ class LitAiChatSidebar extends LitElement {
     const showActions = !m.streaming && m.content
     return html`
       <div>
-        <div class="ai-chat-msg-role">AI</div>
+        <div>AI</div>
         <div
-          class="ai-chat-msg-assistant"
           .innerHTML=${m.content || (m.streaming ? '…' : '')}
         ></div>
         ${showActions
@@ -267,7 +266,7 @@ class LitAiChatSidebar extends LitElement {
     if (!this.open) return nothing
     const scope = this.hasSelection() ? 'selection' : 'document'
     return html`
-      <aside class="ai-chat-sidebar" data-testid="ai-chat-sidebar">
+      <aside class="fixed right-0 inset-y-0 w-80 flex flex-col bg-[canvas] z-10" data-testid="ai-chat-sidebar">
         <div class="flex items-center px-2 py-1 border-b border-gray-200 dark:border-gray-800">
           <div class="text-sm font-medium flex-1">Chat</div>
           <button
@@ -280,7 +279,7 @@ class LitAiChatSidebar extends LitElement {
           </button>
         </div>
 
-        <div ${ref(this.threadRef)} class="ai-chat-thread">
+        <div ${ref(this.threadRef)} class="flex-1 overflow-y-auto">
           ${this.messages.length === 0
             ? html`<div class="text-xs text-gray-500">
                 Ask a question. Select text in the editor first to scope to that selection.
