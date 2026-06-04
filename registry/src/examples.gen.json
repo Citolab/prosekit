@@ -590,6 +590,13 @@
       ],
       "hidden": false,
       "description": "Real-time collaboration using Yjs CRDT library."
+    },
+    "ai-check": {
+      "frameworks": [
+        "lit"
+      ],
+      "hidden": false,
+      "description": "Scan the whole document with AI and review suggestions as an inline diff with per-suggestion accept or reject."
     }
   },
   "examples": {
@@ -2623,6 +2630,22 @@
         "registry/src/vue/ui/image-upload-popover/index.ts",
         "registry/src/vue/ui/toolbar/index.ts",
         "registry/src/vue/ui/toolbar/toolbar.vue"
+      ]
+    },
+    "lit-example-ai-check": {
+      "story": "ai-check",
+      "files": [
+        "registry/src/lit/examples/ai-check/accept-toolbar.ts",
+        "registry/src/lit/examples/ai-check/ai-check.css",
+        "registry/src/lit/examples/ai-check/editor.ts",
+        "registry/src/lit/examples/ai-check/extension.ts",
+        "registry/src/lit/examples/ai-check/fragment-popover.ts",
+        "registry/src/lit/examples/ai-check/index.ts",
+        "registry/src/lit/examples/ai-check/openai.ts",
+        "registry/src/lit/examples/ai-check/prompts.ts",
+        "registry/src/lit/examples/ai-check/robot-toolbar.ts",
+        "registry/src/lit/sample/sample-doc-ai-check.ts",
+        "registry/src/lit/ui/editor-context.ts"
       ]
     },
     "lit-example-ai-stream-content": {

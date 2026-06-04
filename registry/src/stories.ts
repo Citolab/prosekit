@@ -1,6 +1,10 @@
 /// keep-sorted { "keys": ["name"] }
 const stories: ReadonlyArray<{ name: string; description: string; hidden?: boolean }> = [
   {
+    name: 'ai-check',
+    description: 'Scan the whole document with AI and review suggestions as an inline diff with per-suggestion accept or reject.',
+  },
+  {
     name: 'ai-stream-content',
     description: 'Stream AI-generated content into the editor with live decorations.',
   },

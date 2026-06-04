@@ -1,6 +1,7 @@
 // This file is generated from update-loader.ts
 
 export const loaders = {
+  'ai-check': () => import('./examples/ai-check/index.ts').then((m) => m.registerLitEditor()),
   'ai-stream-content': () => import('./examples/ai-stream-content/index.ts').then((m) => m.registerLitEditor()),
   'block-handle': () => import('./examples/block-handle/index.ts').then((m) => m.registerLitEditor()),
   'code-block': () => import('./examples/code-block/index.ts').then((m) => m.registerLitEditor()),

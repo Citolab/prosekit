@@ -14,6 +14,7 @@
   },
   "exports": {
     "./examples.gen.json": "./src/examples.gen.json",
+    "./lit/examples/ai-check": "./src/lit/examples/ai-check/index.ts",
     "./lit/examples/ai-stream-content": "./src/lit/examples/ai-stream-content/index.ts",
     "./lit/examples/block-handle": "./src/lit/examples/block-handle/index.ts",
     "./lit/examples/code-block": "./src/lit/examples/code-block/index.ts",
