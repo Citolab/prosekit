@@ -244,14 +244,14 @@ class LitAiChatSidebar extends LitElement {
                 <button
                   type="button"
                   @click=${() => this.copy(m.content)}
-                  class="text-xs underline text-gray-600 dark:text-gray-300"
+                  class="underline text-gray-600 dark:text-gray-300"
                 >
                   Copy
                 </button>
                 <button
                   type="button"
                   @click=${() => this.insert(m.content)}
-                  class="text-xs underline text-gray-600 dark:text-gray-300"
+                  class="underline text-gray-600 dark:text-gray-300"
                 >
                   Insert
                 </button>
@@ -268,11 +268,11 @@ class LitAiChatSidebar extends LitElement {
     return html`
       <aside class="fixed right-0 inset-y-0 w-80 flex flex-col bg-[canvas] z-10" data-testid="ai-chat-sidebar">
         <div class="flex items-center px-2 py-1 border-b border-gray-200 dark:border-gray-800">
-          <div class="text-sm font-medium flex-1">Chat</div>
+          <div class="font-medium flex-1">Chat</div>
           <button
             type="button"
             @click=${this.close}
-            class="text-sm px-2"
+            class="px-2"
             title="Close"
           >
             ×
@@ -281,7 +281,7 @@ class LitAiChatSidebar extends LitElement {
 
         <div ${ref(this.threadRef)} class="flex-1 overflow-y-auto">
           ${this.messages.length === 0
-            ? html`<div class="text-xs text-gray-500">
+            ? html`<div class="text-gray-500">
                 Ask a question. Select text in the editor first to scope to that selection.
               </div>`
             : this.messages.map((m) => this.renderMessage(m))}
@@ -291,7 +291,7 @@ class LitAiChatSidebar extends LitElement {
           class="flex flex-col gap-1 p-2 border-t border-gray-200 dark:border-gray-800"
           @submit=${(e: Event) => { e.preventDefault(); void this.submit() }}
         >
-          <div class="text-xs text-gray-500">Scope: ${scope}</div>
+          <div class="text-gray-500">Scope: ${scope}</div>
           <div class="flex gap-1">
             <input
               type="text"
@@ -300,12 +300,12 @@ class LitAiChatSidebar extends LitElement {
               @keydown=${this.onKeyDown}
               placeholder="Ask…"
               ?disabled=${this.streaming}
-              class="flex-1 px-2 py-1 rounded border border-gray-300 dark:border-gray-700 bg-transparent text-sm"
+              class="flex-1 px-2 py-1 rounded border border-gray-300 dark:border-gray-700 bg-transparent"
             />
             <button
               type="submit"
               ?disabled=${this.streaming || !this.draft.trim()}
-              class="px-3 py-1 rounded bg-blue-600 text-white text-sm hover:bg-blue-700 disabled:opacity-40"
+              class="px-3 py-1 rounded bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-40"
             >
               Send
             </button>

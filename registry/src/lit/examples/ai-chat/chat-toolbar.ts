@@ -26,7 +26,7 @@ class LitAiChatToolbar extends LitElement {
         <button
           type="button"
           @click=${this.toggle}
-          class="px-2 py-1 rounded text-sm border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800"
+          class="px-2 py-1 rounded border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800"
         >
           ${this.open ? 'Close chat' : 'Chat'}
         </button>
