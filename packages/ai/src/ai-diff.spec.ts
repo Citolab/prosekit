@@ -1,19 +1,11 @@
 import { createEditor, union } from '@prosekit/core'
-import {
-  CommitRecorder,
-  defineCommitRecorder,
-} from '@prosekit/extensions/commit'
+import { CommitRecorder, defineCommitRecorder } from '@prosekit/extensions/commit'
 import { defineDoc } from '@prosekit/extensions/doc'
 import { defineParagraph } from '@prosekit/extensions/paragraph'
 import { defineText } from '@prosekit/extensions/text'
 import { describe, expect, it } from 'vitest'
 
-import {
-  AI_DIFF_CHANGE_INDEX_ATTR,
-  AI_DIFF_ID_ATTR,
-  aiDiffPluginKey,
-  defineAiDiff,
-} from './ai-diff'
+import { AI_DIFF_CHANGE_INDEX_ATTR, AI_DIFF_ID_ATTR, aiDiffPluginKey, defineAiDiff } from './ai-diff'
 
 function setup() {
   const recorder = new CommitRecorder()

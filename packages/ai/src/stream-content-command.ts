@@ -1,19 +1,8 @@
 import { DOMParser } from '@prosekit/pm/model'
-import type {
-  Command,
-  EditorState,
-  Transaction,
-} from '@prosekit/pm/state'
-import {
-  Plugin,
-  PluginKey,
-  Selection,
-} from '@prosekit/pm/state'
+import type { Command, EditorState, Transaction } from '@prosekit/pm/state'
+import { Plugin, PluginKey, Selection } from '@prosekit/pm/state'
 import type { EditorView } from '@prosekit/pm/view'
-import {
-  Decoration,
-  DecorationSet,
-} from '@prosekit/pm/view'
+import { Decoration, DecorationSet } from '@prosekit/pm/view'
 
 /** A live streaming region in the document. */
 interface StreamRange {
@@ -162,11 +151,25 @@ export interface StreamContentOptions {
  * set `innerHTML`, so partial buffers parse cleanly.
  */
 export const DEFAULT_FLUSH_TAGS: readonly string[] = [
-  'p', 'li', 'tr', 'td', 'th',
-  'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
-  'pre', 'blockquote',
-  'ul', 'ol',
-  'table', 'thead', 'tbody', 'tfoot',
+  'p',
+  'li',
+  'tr',
+  'td',
+  'th',
+  'h1',
+  'h2',
+  'h3',
+  'h4',
+  'h5',
+  'h6',
+  'pre',
+  'blockquote',
+  'ul',
+  'ol',
+  'table',
+  'thead',
+  'tbody',
+  'tfoot',
 ]
 
 const TAG_NAME_RE = /^[A-Za-z][\dA-Za-z-]*$/
@@ -343,7 +346,7 @@ export function streamContentCommand(
       streamContent(view, options).catch((error: unknown) => {
         if ((error as { name?: string })?.name === 'AbortError') return
         console.error('streamContent failed:', error)
-      }),
+      })
     )
     return true
   }

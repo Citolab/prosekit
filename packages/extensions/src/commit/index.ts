@@ -158,12 +158,12 @@ function decorateDeletion(
   return renders.map((render, index) => {
     const wrappedRender = extraAttrs
       ? (view: EditorView): HTMLElement => {
-          const el = render(view)
-          for (const [k, v] of Object.entries(extraAttrs)) {
-            el.setAttribute(k, v)
-          }
-          return el
+        const el = render(view)
+        for (const [k, v] of Object.entries(extraAttrs)) {
+          el.setAttribute(k, v)
         }
+        return el
+      }
       : render
     return Decoration.widget(pos, wrappedRender, {
       side: -20 - count + index,

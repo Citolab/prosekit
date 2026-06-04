@@ -1,6 +1,5 @@
 import 'prosekit/basic/style.css'
 import 'prosekit/basic/typography.css'
-
 import './ai-stream-content.css'
 
 import { ContextProvider } from '@lit/context'
@@ -9,10 +8,10 @@ import { createRef, ref, type Ref } from 'lit/directives/ref.js'
 import type { Editor } from 'prosekit/core'
 import { createEditor } from 'prosekit/core'
 
-import { editorContext } from '../../ui/editor-context'
+import { editorContext } from '../../ui/editor-context.ts'
 
-import { defineExtension } from './extension'
-import { registerLitAiStreamContentToolbar } from './toolbar'
+import { defineExtension } from './extension.ts'
+import { registerLitAiStreamContentToolbar } from './toolbar.ts'
 
 export class LitEditor extends LitElement {
   static override properties = {

@@ -2,14 +2,14 @@
 
 import 'prosekit/basic/style.css'
 import 'prosekit/basic/typography.css'
+import './ai-stream-content.css'
 
 import { createEditor } from 'prosekit/core'
 import { ProseKit } from 'prosekit/react'
 import { useMemo } from 'react'
 
-import { defineExtension } from './extension'
-import Toolbar from './toolbar'
-import './ai-stream-content.css'
+import { defineExtension } from './extension.ts'
+import Toolbar from './toolbar.tsx'
 
 export default function Editor() {
   const editor = useMemo(() => {

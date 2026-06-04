@@ -5,23 +5,10 @@
  * @module
  */
 
-import {
-  defineCommands,
-  definePlugin,
-  union,
-  type Extension,
-} from '@prosekit/core'
-import {
-  decorateDeletion,
-  getChanges,
-  type Commit,
-} from '@prosekit/extensions/commit'
+import { defineCommands, definePlugin, union, type Extension } from '@prosekit/core'
+import { decorateDeletion, getChanges, type Commit } from '@prosekit/extensions/commit'
 import type { Node as ProseMirrorNode, Schema } from '@prosekit/pm/model'
-import {
-  PluginKey,
-  ProseMirrorPlugin,
-  type Command,
-} from '@prosekit/pm/state'
+import { PluginKey, ProseMirrorPlugin, type Command } from '@prosekit/pm/state'
 import { Step } from '@prosekit/pm/transform'
 import { Decoration, DecorationSet } from '@prosekit/pm/view'
 import { simplifyChanges } from 'prosemirror-changeset'
@@ -332,10 +319,13 @@ function addAiDiffCommand(commit: Commit, options?: AddAiDiffOptions): Command {
     const id = options?.id ?? randomId()
     if (dispatch) {
       const diff = hydrate(commit, state.schema, state.doc, id)
-      const tr = state.tr.setMeta(aiDiffPluginKey, {
-        type: 'add',
-        diff,
-      } satisfies AiDiffMeta)
+      const tr = state.tr.setMeta(
+        aiDiffPluginKey,
+        {
+          type: 'add',
+          diff,
+        } satisfies AiDiffMeta,
+      )
       tr.setMeta('addToHistory', false)
       dispatch(tr)
     }
@@ -396,11 +386,14 @@ function acceptAiDiffFragmentCommand(id: string, changeIndex: number): Command {
     const diff = pluginState?.diffs.find((d) => d.id === id)
     if (!diff || !diff.fragments.some((f) => f.index === changeIndex)) return false
     if (dispatch) {
-      const tr = state.tr.setMeta(aiDiffPluginKey, {
-        type: 'removeFragment',
-        id,
-        changeIndex,
-      } satisfies AiDiffMeta)
+      const tr = state.tr.setMeta(
+        aiDiffPluginKey,
+        {
+          type: 'removeFragment',
+          id,
+          changeIndex,
+        } satisfies AiDiffMeta,
+      )
       tr.setMeta('addToHistory', false)
       dispatch(tr)
     }
@@ -420,11 +413,14 @@ function rejectAiDiffFragmentCommand(id: string, changeIndex: number): Command {
       const tr = state.tr
       const originalSlice = diff.parentNode.slice(fragment.fromA, fragment.toA)
       tr.replaceRange(fragment.fromB, fragment.toB, originalSlice)
-      tr.setMeta(aiDiffPluginKey, {
-        type: 'removeFragment',
-        id,
-        changeIndex,
-      } satisfies AiDiffMeta)
+      tr.setMeta(
+        aiDiffPluginKey,
+        {
+          type: 'removeFragment',
+          id,
+          changeIndex,
+        } satisfies AiDiffMeta,
+      )
       // Per-fragment reject changes the doc — keep it in the undo stack.
       dispatch(tr)
     }
@@ -492,5 +488,5 @@ export function defineAiDiff(): AiDiffExtension {
       acceptAiDiffFragment: acceptAiDiffFragmentCommand,
       rejectAiDiffFragment: rejectAiDiffFragmentCommand,
     }),
-  ) as AiDiffExtension
+  )
 }

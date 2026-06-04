@@ -2,16 +2,10 @@
 
 import { streamContent } from '@prosekit/ai'
 import { useEditor } from 'prosekit/react'
-import {
-  type FormEvent,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import { useCallback, useEffect, useRef, useState, type FormEvent } from 'react'
 
-import type { EditorExtension } from './extension'
-import { streamFromOpenAI } from './llm'
+import type { EditorExtension } from './extension.ts'
+import { streamFromOpenAI } from './llm.ts'
 
 const API_KEY_STORAGE_KEY = 'prosekit-stream-content-api-key'
 const MODEL_STORAGE_KEY = 'prosekit-stream-content-model'
@@ -38,19 +32,12 @@ function writeStorage(key: string, value: string): void {
 
 export default function Toolbar() {
   const editor = useEditor<EditorExtension>({ update: false })
-  const [apiKey, setApiKey] = useState('')
-  const [model, setModel] = useState(DEFAULT_MODEL)
-  const [endpoint, setEndpoint] = useState('')
+  const [apiKey, setApiKey] = useState(() => readStorage(API_KEY_STORAGE_KEY))
+  const [model, setModel] = useState(() => readStorage(MODEL_STORAGE_KEY, DEFAULT_MODEL))
+  const [endpoint, setEndpoint] = useState(() => readStorage(ENDPOINT_STORAGE_KEY))
   const [prompt, setPrompt] = useState('Write a short article about prosemirror.')
   const [streaming, setStreaming] = useState(false)
   const abortRef = useRef<AbortController | null>(null)
-
-  // Hydrate from localStorage on mount so SSR doesn't cause a mismatch.
-  useEffect(() => {
-    setApiKey(readStorage(API_KEY_STORAGE_KEY))
-    setModel(readStorage(MODEL_STORAGE_KEY, DEFAULT_MODEL))
-    setEndpoint(readStorage(ENDPOINT_STORAGE_KEY))
-  }, [])
 
   useEffect(() => writeStorage(API_KEY_STORAGE_KEY, apiKey), [apiKey])
   useEffect(() => writeStorage(MODEL_STORAGE_KEY, model), [model])

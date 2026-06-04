@@ -1,5 +1,4 @@
-const SYSTEM_PROMPT
-  = `You are a writing assistant whose output is rendered as rich-text inside a ProseMirror editor.
+const SYSTEM_PROMPT = `You are a writing assistant whose output is rendered as rich-text inside a ProseMirror editor.
 
 Respond with well-formed HTML only. Allowed tags: <p>, <h1>, <h2>, <h3>, <ul>, <ol>, <li>, <strong>, <em>, <code>, <pre>, <blockquote>.
 

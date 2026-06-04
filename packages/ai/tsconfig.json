@@ -12,6 +12,9 @@
       "path": "../core/tsconfig.json",
     },
     {
+      "path": "../extensions/tsconfig.json",
+    },
+    {
       "path": "../pm/tsconfig.json",
     },
     {

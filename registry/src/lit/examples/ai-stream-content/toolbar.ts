@@ -1,9 +1,8 @@
 import { ContextConsumer } from '@lit/context'
 import { streamContent } from '@prosekit/ai'
 import { html, LitElement, nothing } from 'lit'
-import type { Editor } from 'prosekit/core'
 
-import { editorContext } from '../../ui/editor-context'
+import { editorContext } from '../../ui/editor-context.ts'
 
 const API_KEY_STORAGE_KEY = 'prosekit-stream-content-api-key'
 const MODEL_STORAGE_KEY = 'prosekit-stream-content-model'
@@ -91,7 +90,7 @@ export class LitAiStreamContentToolbar extends LitElement {
 
     const { from, to } = editor.view.state.selection
     try {
-      const { streamFromOpenAI } = await import('./llm')
+      const { streamFromOpenAI } = await import('./llm.ts')
       await streamContent(editor.view, {
         from,
         to,
@@ -121,17 +120,14 @@ export class LitAiStreamContentToolbar extends LitElement {
   }
 
   override render() {
-    const editor = this.editorConsumer.value as Editor | undefined
+    const editor = this.editorConsumer.value
     if (!editor) return nothing
 
-    const inputCls
-      = 'px-2 py-1 rounded border border-gray-300 dark:border-gray-700 bg-transparent text-sm'
+    const inputCls =
+      'px-2 py-1 rounded border border-gray-300 dark:border-gray-700 bg-transparent text-sm'
 
     return html`
-      <form
-        @submit=${this.onSubmit}
-        class="CSS_TOOLBAR not-content flex-col items-stretch gap-2"
-      >
+      <form @submit=${this.onSubmit} class="CSS_TOOLBAR not-content flex-col items-stretch gap-2">
         <input
           type="url"
           autocomplete="off"

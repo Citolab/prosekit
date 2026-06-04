@@ -5,6 +5,9 @@
   },
   "references": [
     {
+      "path": "../packages/ai/tsconfig.json",
+    },
+    {
       "path": "../packages/config-vitest/tsconfig.json",
     },
     {
@@ -14,13 +17,13 @@
       "path": "../packages/prosekit/tsconfig.json",
     },
     {
+      "path": "./src/lit/tsconfig.json",
+    },
+    {
       "path": "./src/preact/tsconfig.json",
     },
     {
       "path": "./src/react/tsconfig.json",
-    },
-    {
-      "path": "./src/vanilla/tsconfig.json",
     },
     {
       "path": "./src/solid/tsconfig.json",
@@ -29,10 +32,10 @@
       "path": "./src/svelte/tsconfig.json",
     },
     {
-      "path": "./src/vue/tsconfig.json",
+      "path": "./src/vanilla/tsconfig.json",
     },
     {
-      "path": "./src/lit/tsconfig.json",
+      "path": "./src/vue/tsconfig.json",
     },
   ],
   "include": [

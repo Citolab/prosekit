@@ -1,11 +1,5 @@
 import type { Editor } from '@prosekit/core'
-import {
-  DOMParser,
-  DOMSerializer,
-  type Node as PmNode,
-  type ResolvedPos,
-  type Slice,
-} from '@prosekit/pm/model'
+import { DOMParser, DOMSerializer, type Node as PmNode, type ResolvedPos, type Slice } from '@prosekit/pm/model'
 
 function ownerDoc(editor: Editor): Document {
   return editor.view.dom.ownerDocument

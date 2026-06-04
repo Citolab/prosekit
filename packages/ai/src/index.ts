@@ -15,13 +15,7 @@ export {
   type AiDiffExtension,
   type AiDiffState,
 } from './ai-diff'
-export {
-  parseHtmlToDoc,
-  parseHtmlToSlice,
-  serializeDocToHtml,
-  serializeRangeToHtml,
-  serializeSelectionToHtml,
-} from './html-bridge'
+export { parseHtmlToDoc, parseHtmlToSlice, serializeDocToHtml, serializeRangeToHtml, serializeSelectionToHtml } from './html-bridge'
 export {
   createStreamingPlugin,
   DEFAULT_FLUSH_TAGS,
