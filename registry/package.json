@@ -14,6 +14,7 @@
   },
   "exports": {
     "./examples.gen.json": "./src/examples.gen.json",
+    "./lit/examples/ai-stream-content": "./src/lit/examples/ai-stream-content/index.ts",
     "./lit/examples/block-handle": "./src/lit/examples/block-handle/index.ts",
     "./lit/examples/code-block": "./src/lit/examples/code-block/index.ts",
     "./lit/examples/full": "./src/lit/examples/full/index.ts",
@@ -74,6 +75,7 @@
     "./preact/examples/word-counter": "./src/preact/examples/word-counter/index.ts",
     "./preact/examples/yjs": "./src/preact/examples/yjs/index.ts",
     "./preact/renderer": "./src/preact/renderer.ts",
+    "./react/examples/ai-stream-content": "./src/react/examples/ai-stream-content/index.ts",
     "./react/examples/block-handle": "./src/react/examples/block-handle/index.ts",
     "./react/examples/blockquote": "./src/react/examples/blockquote/index.ts",
     "./react/examples/bold": "./src/react/examples/bold/index.ts",

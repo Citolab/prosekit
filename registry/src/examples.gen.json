@@ -1,5 +1,13 @@
 {
   "stories": {
+    "ai-stream-content": {
+      "frameworks": [
+        "react",
+        "lit"
+      ],
+      "hidden": false,
+      "description": "Stream AI-generated content into the editor with live decorations."
+    },
     "block-handle": {
       "frameworks": [
         "react",
@@ -585,6 +593,17 @@
     }
   },
   "examples": {
+    "react-example-ai-stream-content": {
+      "story": "ai-stream-content",
+      "files": [
+        "registry/src/react/examples/ai-stream-content/ai-stream-content.css",
+        "registry/src/react/examples/ai-stream-content/editor.tsx",
+        "registry/src/react/examples/ai-stream-content/extension.ts",
+        "registry/src/react/examples/ai-stream-content/index.ts",
+        "registry/src/react/examples/ai-stream-content/llm.ts",
+        "registry/src/react/examples/ai-stream-content/toolbar.tsx"
+      ]
+    },
     "react-example-block-handle": {
       "story": "block-handle",
       "files": [
@@ -2604,6 +2623,18 @@
         "registry/src/vue/ui/image-upload-popover/index.ts",
         "registry/src/vue/ui/toolbar/index.ts",
         "registry/src/vue/ui/toolbar/toolbar.vue"
+      ]
+    },
+    "lit-example-ai-stream-content": {
+      "story": "ai-stream-content",
+      "files": [
+        "registry/src/lit/examples/ai-stream-content/ai-stream-content.css",
+        "registry/src/lit/examples/ai-stream-content/editor.ts",
+        "registry/src/lit/examples/ai-stream-content/extension.ts",
+        "registry/src/lit/examples/ai-stream-content/index.ts",
+        "registry/src/lit/examples/ai-stream-content/llm.ts",
+        "registry/src/lit/examples/ai-stream-content/toolbar.ts",
+        "registry/src/lit/ui/editor-context.ts"
       ]
     },
     "lit-example-block-handle": {

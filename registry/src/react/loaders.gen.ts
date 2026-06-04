@@ -2,6 +2,7 @@
 import { lazy } from 'react'
 
 export const loaders = {
+  'ai-stream-content': lazy(() => import('./examples/ai-stream-content/index.ts').then((m) => ({ default: m.ExampleEditor }))),
   'block-handle': lazy(() => import('./examples/block-handle/index.ts').then((m) => ({ default: m.ExampleEditor }))),
   'blockquote': lazy(() => import('./examples/blockquote/index.ts').then((m) => ({ default: m.ExampleEditor }))),
   'bold': lazy(() => import('./examples/bold/index.ts').then((m) => ({ default: m.ExampleEditor }))),

@@ -3,6 +3,7 @@ import component from './react.astro'
 
 export default { component }
 
+export const AiStreamContent = { args: { story: 'ai-stream-content' } }
 export const BlockHandle = { args: { story: 'block-handle' } }
 export const Blockquote = { args: { story: 'blockquote' } }
 export const Bold = { args: { story: 'bold' } }
