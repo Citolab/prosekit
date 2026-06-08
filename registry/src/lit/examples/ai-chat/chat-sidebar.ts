@@ -11,7 +11,7 @@ import { Selection as PmSelection } from 'prosekit/pm/state'
 
 import { editorContext } from '../../ui/editor-context'
 
-import type { ChatMessage } from './openai.ts'
+import type { ChatMessage } from './llm.ts'
 
 const API_KEY_STORAGE_KEY = 'prosekit-stream-content-api-key'
 const MODEL_STORAGE_KEY = 'prosekit-stream-content-model'
@@ -146,7 +146,7 @@ class LitAiChatSidebar extends LitElement {
     let assistantContent = ''
 
     try {
-      const { streamChatFromOpenAI } = await import('./openai')
+      const { streamChatFromOpenAI } = await import('./llm')
       await streamChatFromOpenAI({
         endpoint,
         apiKey,
