@@ -1,4 +1,3 @@
-import { ContextConsumer } from '@lit/context'
 import {
   autoUpdate,
   computePosition,
@@ -6,18 +5,19 @@ import {
   offset,
   shift,
 } from '@floating-ui/dom'
+import { ContextConsumer } from '@lit/context'
 import { html, LitElement, type PropertyDeclaration } from 'lit'
 import { createRef, ref, type Ref } from 'lit/directives/ref.js'
 import { defineUpdateHandler } from 'prosekit/core'
 import { TextSelection } from 'prosekit/pm/state'
 
-import { editorContext } from '../../ui/editor-context'
+import { editorContext } from '../../ui/editor-context.js'
 
 import {
   AI_PROMPTS,
   type AiCreateRequestDetail,
   type AiPrompt,
-} from './prompts'
+} from './prompts.js'
 
 class LitAiCreateToolbar extends LitElement {
   static override properties = {
@@ -58,10 +58,12 @@ class LitAiCreateToolbar extends LitElement {
     if (!menuEl || !anchor) return
     const isOpen = menuEl.matches(':popover-open')
     if (this.openMenu && !isOpen) {
+      menuEl.style.visibility = 'hidden'
       menuEl.showPopover()
       this.startAutoUpdate(anchor, menuEl)
     } else if (!this.openMenu && isOpen) {
       menuEl.hidePopover()
+      menuEl.style.visibility = 'hidden'
       this.stopAutoUpdate()
     }
   }
@@ -82,14 +84,25 @@ class LitAiCreateToolbar extends LitElement {
 
   private startAutoUpdate(anchor: HTMLElement, menuEl: HTMLElement) {
     this.stopAutoUpdate()
-    this.cleanupAutoUpdate = autoUpdate(anchor, menuEl, async () => {
+    const updatePosition = async () => {
       const { x, y } = await computePosition(anchor, menuEl, {
         strategy: 'fixed',
         placement: 'bottom-start',
         middleware: [offset(4), flip(), shift({ padding: 8 })],
       })
-      Object.assign(menuEl.style, { left: `${x}px`, top: `${y}px` })
-    })
+      Object.assign(menuEl.style, {
+        position: 'fixed',
+        inset: 'auto',
+        left: `${x}px`,
+        top: `${y}px`,
+        right: 'auto',
+        bottom: 'auto',
+        visibility: 'visible',
+      })
+    }
+
+    void updatePosition()
+    this.cleanupAutoUpdate = autoUpdate(anchor, menuEl, updatePosition)
   }
 
   private stopAutoUpdate() {
@@ -170,7 +183,7 @@ class LitAiCreateToolbar extends LitElement {
         popover="auto"
         @toggle=${this.onToggleMenu}
         class="ai-create-toolbar-menu flex flex-col min-w-44 rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-1 shadow"
-        style="position: fixed; margin: 0;"
+        style="position: fixed; inset: auto; margin: 0; visibility: hidden;"
       >
         ${AI_PROMPTS.map(
           (prompt) => html`

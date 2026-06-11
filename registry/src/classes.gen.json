@@ -55,6 +55,7 @@
   "CSS_ICON_TABLE_ROW_HANDLE": "i-lucide-grip-vertical size-5 min-h-5 min-w-5 block",
   "CSS_ICON_UNDERLINE": "i-lucide-underline size-5 block",
   "CSS_ICON_UNDO": "i-lucide-undo-2 size-5 block",
+  "CSS_ICON_WAND": "i-lucide-wand-sparkles size-5 block",
   "CSS_ICON_WHOLE_WORD": "i-lucide-whole-word size-5 block",
   "CSS_IMAGE_RESIZABLE": "relative flex items-center justify-center box-border overflow-hidden my-2 group max-h-150 max-w-full min-h-16 min-w-16 outline-2 outline-transparent data-selected:outline-blue-500 outline-solid",
   "CSS_IMAGE_RESIZABLE_HANDLE": "absolute bottom-0 right-0 rounded-sm m-1.5 p-1 transition bg-gray-900/30 active:bg-gray-800/60 hover:bg-gray-800/60 text-white/50 active:text-white/80 active:translate-x-0.5 active:translate-y-0.5 opacity-0 hover:opacity-100 group-hover:opacity-100 group-data-resizing:opacity-100",
