@@ -1,4 +1,3 @@
-import { ContextConsumer } from '@lit/context'
 import {
   autoUpdate,
   computePosition,
@@ -6,16 +5,17 @@ import {
   offset,
   shift,
 } from '@floating-ui/dom'
+import { ContextConsumer } from '@lit/context'
+import { parseHtmlToDoc, serializeDocToHtml } from '@prosekit/ai'
 import { html, LitElement, nothing, type PropertyDeclaration } from 'lit'
 import { createRef, ref, type Ref } from 'lit/directives/ref.js'
-import { parseHtmlToDoc, serializeDocToHtml } from '@prosekit/ai'
 import { defineUpdateHandler, type Editor } from 'prosekit/core'
 import { Slice } from 'prosekit/pm/model'
 
-import { editorContext } from '../../ui/editor-context'
+import { editorContext } from '../../ui/editor-context.js'
 
-import { commitRecorder, type EditorExtension } from './extension'
-import { AI_PROMPTS, type AiPrompt } from './prompts'
+import { commitRecorder, type EditorExtension } from './extension.js'
+import { AI_PROMPTS, type AiPrompt } from './prompts.js'
 
 const API_KEY_STORAGE_KEY = 'prosekit-stream-content-api-key'
 const MODEL_STORAGE_KEY = 'prosekit-stream-content-model'
@@ -148,7 +148,7 @@ class LitAiCheckToolbar extends LitElement {
 
     try {
       let htmlBuffer = ''
-      const { streamFromOpenAI } = await import('./openai')
+      const { streamFromOpenAI } = await import('./openai.js')
       await streamFromOpenAI({
         endpoint,
         apiKey,

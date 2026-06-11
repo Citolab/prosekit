@@ -3,9 +3,9 @@ import { aiDiffPluginKey } from '@prosekit/ai'
 import { html, LitElement, nothing } from 'lit'
 import { defineUpdateHandler, type Editor } from 'prosekit/core'
 
-import { editorContext } from '../../ui/editor-context'
+import { editorContext } from '../../ui/editor-context.js'
 
-import type { EditorExtension } from './extension'
+import type { EditorExtension } from './extension.js'
 
 class LitAiCheckAcceptToolbar extends LitElement {
   private editorConsumer = new ContextConsumer(this, {
